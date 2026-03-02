@@ -9,8 +9,9 @@ import SignUp from './Pages/SignUp/SignUp'
 import SignIn from './Pages/SignIn/SignIn'
 import ProductDetails from './Pages/Products/ProductsDetails/ProductDetails'
 import Contact from './Pages/Contact/Contact'
-import Services from './Pages/Services/About'
+import Services from './Pages/Services/Services'
 import Footer from './Components/Footer/Footer'
+import Dashboard from './Components/Dashboard/Dashboard'
 
 function App() {
 
@@ -21,7 +22,7 @@ function App() {
       children: [
         {
           path: '/',
-          element: <Home/>
+          element: <Home />,
         },
         {
           path: '/home',
@@ -63,6 +64,10 @@ function App() {
     {
       path: '*',
       element: <NotFound />
+    },
+    {
+      path: '/dashboard',
+      element: <Dashboard/>
     }
   ])
 
