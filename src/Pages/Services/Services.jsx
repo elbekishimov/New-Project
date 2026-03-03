@@ -1,3 +1,4 @@
+import { Link, Outlet } from 'react-router-dom'
 import hero from '../../IMG/service-hero.png'
 import service1 from '../../IMG/service1.png'
 import service2 from '../../IMG/service2.png'
@@ -23,9 +24,9 @@ export default function Services() {
               your financial growth.
             </p>
 
-            <button className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-lg font-semibold transition-all shadow-lg hover:shadow-blue-200">
+            <Link to={'/servise-learn-more'} className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-lg font-semibold transition-all shadow-lg hover:shadow-blue-200">
               Learn More
-            </button>
+            </Link>
           </div>
 
           <div className="flex-1 w-full max-w-lg">
@@ -165,6 +166,7 @@ export default function Services() {
         </section>
 
       </div>
+      <main><Outlet/></main>
     </>
   )
 }

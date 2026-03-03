@@ -12,6 +12,10 @@ import Contact from './Pages/Contact/Contact'
 import Services from './Pages/Services/Services'
 import Footer from './Components/Footer/Footer'
 import Dashboard from './Components/Dashboard/Dashboard'
+import CallUs from './Pages/Blog/_components/CallUs'
+import LeaveMessage from './Pages/Blog/_components/Learve'
+import ContactUs from './Pages/Blog/_components/ContactUs'
+import ServiceDetails from './Pages/Services/_components/ServiceDetails'
 
 function App() {
 
@@ -33,12 +37,28 @@ function App() {
           element: <Services />
         },
         {
+          path: '/servise-learn-more',
+          element: <ServiceDetails />
+        },
+        {
           path: '/products',
           element: <Products />
         },
         {
           path: '/blog',
-          element: <Blog />
+          element: <Blog />,
+        },
+        {
+          path: '/call-us',
+          element: <CallUs />
+        },
+        {
+          path: '/leave-mesage',
+          element: <LeaveMessage />
+        },
+        {
+          path: 'contact-us',
+          element: <ContactUs />
         },
         {
           path: '/sign-in',
@@ -54,12 +74,12 @@ function App() {
         },
         {
           path: "/contact",
-          element: <Contact/>
+          element: <Contact />
         }
       ]
     },
     {
-      element: <Footer/>
+      element: <Footer />
     },
     {
       path: '*',
@@ -67,7 +87,7 @@ function App() {
     },
     {
       path: '/dashboard',
-      element: <Dashboard/>
+      element: <Dashboard />
     }
   ])
 

@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 const LoginForm = () => {
   // 1. Ma'lumotlarni saqlash uchun state
@@ -85,9 +86,9 @@ const LoginForm = () => {
 
         <p className="mt-6 text-center text-sm text-gray-600">
           Akkountingiz yo'qmi?{' '}
-          <a href="#" className="font-medium text-blue-600 hover:text-blue-500">
+          <Link to={'/sign-up'} className="font-medium text-blue-600 hover:text-blue-500">
             Ro'yxatdan o'ting
-          </a>
+          </Link>
         </p>
       </div>
     </div>
