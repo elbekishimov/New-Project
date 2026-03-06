@@ -2,14 +2,12 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 const LoginForm = () => {
-  // 1. Ma'lumotlarni saqlash uchun state
   const [formData, setFormData] = useState({
     email: '',
     password: ''
   });
   const [status, setStatus] = useState({ message: '', type: '' });
 
-  // 2. Input o'zgarganda ma'lumotni yangilash funksiyasi
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData(prev => ({
@@ -18,12 +16,20 @@ const LoginForm = () => {
     }));
   };
 
-  // 3. Formani yuborish (Submit)
   const handleSubmit = (e) => {
     e.preventDefault();
-    
-    // Oddiy tekshiruv (Junior darajasi uchun)
-    if (formData.email === "admin@test.com" && formData.password === "123456") {
+
+    const savedUser = JSON.parse(localStorage.getItem("user"));
+
+    if (!savedUser) {
+      setStatus({ message: "Avval ro'yxatdan o'ting!", type: "error" });
+      return;
+    }
+
+    if (
+      formData.email === savedUser.email &&
+      formData.password === savedUser.password
+    ) {
       setStatus({ message: "Xush kelibsiz! Kirish muvaffaqiyatli.", type: "success" });
     } else {
       setStatus({ message: "Email yoki parol xato!", type: "error" });
@@ -38,7 +44,6 @@ const LoginForm = () => {
         </h2>
 
         <form onSubmit={handleSubmit} className="space-y-6">
-          {/* Email maydoni */}
           <div>
             <label className="block text-sm font-medium text-gray-700">Email manzilingiz</label>
             <input
@@ -52,7 +57,6 @@ const LoginForm = () => {
             />
           </div>
 
-          {/* Parol maydoni */}
           <div>
             <label className="block text-sm font-medium text-gray-700">Parol</label>
             <input
@@ -66,16 +70,13 @@ const LoginForm = () => {
             />
           </div>
 
-          {/* Xatolik yoki muvaffaqiyat xabari */}
           {status.message && (
-            <div className={`text-sm text-center p-2 rounded-lg ${
-              status.type === 'success' ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700'
-            }`}>
+            <div className={`text-sm text-center p-2 rounded-lg ${status.type === 'success' ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700'
+              }`}>
               {status.message}
             </div>
           )}
 
-          {/* Kirish tugmasi */}
           <button
             type="submit"
             className="w-full flex justify-center py-3 px-4 border border-transparent rounded-lg shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-colors"

@@ -13,7 +13,6 @@ export default function ServiceDetails({ service }) {
   return (
     <div className="min-h-screen bg-white px-4 md:px-12 py-20">
       <div className="max-w-4xl mx-auto space-y-8">
-        {/* Sarlavha va kategoriya */}
         <div className="space-y-4">
           <h1 className="text-4xl md:text-5xl font-bold text-sky-500 capitalize">
             {service?.title || "Xizmat nomi"}

@@ -24,7 +24,7 @@ export default function Services() {
               your financial growth.
             </p>
 
-            <Link to={'/servise-learn-more'} className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-lg font-semibold transition-all shadow-lg hover:shadow-blue-200">
+            <Link to={'servise-learn-more'} className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-lg font-semibold transition-all shadow-lg hover:shadow-blue-200 mt-10">
               Learn More
             </Link>
           </div>
@@ -166,7 +166,7 @@ export default function Services() {
         </section>
 
       </div>
-      <main><Outlet/></main>
+      <main className='asosiy'><Outlet/></main>
     </>
   )
 }

@@ -32,8 +32,17 @@ const SignUpForm = () => {
       return;
     }
 
+    const user = {
+      fullName: formData.fullName,
+      email: formData.email,
+      password: formData.password
+    };
+
+    localStorage.setItem("user", JSON.stringify(user));
+
     setStatus({ message: "Muvaffaqiyatli ro'yxatdan o'tdingiz!", type: "success" });
-    console.log("Yuborilgan ma'lumotlar:", formData);
+
+    console.log("Saqlangan user:", user);
   };
 
   return (
@@ -99,9 +108,8 @@ const SignUpForm = () => {
           </div>
 
           {status.message && (
-            <div className={`text-sm font-medium p-3 rounded-lg text-center ${
-              status.type === 'success' ? 'bg-green-50 text-green-700 border border-green-200' : 'bg-red-50 text-red-700 border border-red-200'
-            }`}>
+            <div className={`text-sm font-medium p-3 rounded-lg text-center ${status.type === 'success' ? 'bg-green-50 text-green-700 border border-green-200' : 'bg-red-50 text-red-700 border border-red-200'
+              }`}>
               {status.message}
             </div>
           )}

@@ -1,7 +1,6 @@
 import { Link, Outlet } from "react-router-dom";
 import unnamed from "../../IMG/unnamed.png"
 import Practic from "./_components/Practic";
-// import { Lightbulb } from 'lucide-react';
 
 
 export default function Home() {
