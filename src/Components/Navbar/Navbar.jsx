@@ -17,16 +17,18 @@ export default function Navbar() {
                 <div className="hidden md:block">
                     <ul className="flex gap-6 text-lg">
                         <Link to="/home"><li className="hover:text-[#0088CA]">Home</li></Link>
+                        <Link to="/about"><li className="hover:text-[#0088CA]">About</li></Link>
                         <Link to="/services"><li className="hover:text-[#0088CA]">Services</li></Link>
                         <Link to="/products"><li className="hover:text-[#0088CA]">Products</li></Link>
                         <Link to="/blog"><li className="hover:text-[#0088CA]">Blog</li></Link>
                         <Link to="/contact"><li className="hover:text-[#0088CA]">Contact</li></Link>
+                        <Link to={"/reviews"}><li className="hover:text-[#0088CA]">Reviews</li></Link>
                     </ul>
                 </div>
 
                 <div className="flex items-center gap-3">
 
-                    <ShoppingBasket className="cursor-pointer" />
+                    <Link to={'/cart'}><ShoppingBasket className="cursor-pointer" /></Link>
 
                     <div className="hidden md:flex gap-2">
                         <Link to="/sign-in">
@@ -42,8 +44,8 @@ export default function Navbar() {
                         </Link>
                     </div>
 
-                    <button 
-                        className="md:hidden flex items-center" 
+                    <button
+                        className="md:hidden flex items-center"
                         onClick={() => setMenuOpen(!menuOpen)}
                     >
                         {menuOpen ? <X /> : <Menu />}

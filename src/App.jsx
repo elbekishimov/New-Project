@@ -17,6 +17,10 @@ import LeaveMessage from './Pages/Blog/_components/Learve'
 import ContactUs from './Pages/Blog/_components/ContactUs'
 import ServiceDetails from './Pages/Services/_components/ServiceDetails'
 import ScheduleAppointment from './Pages/Home/_components/Schedule'
+import Reviews from './Pages/Reviews/Reviews'
+import About from './Pages/About/About'
+import AboutMore from './Pages/About/_components/AboutMore'
+import Cart from './Pages/Cart/Cart'
 
 const Layout = () => (
   <>
@@ -45,15 +49,19 @@ function App() {
             }
           ]
         },
-        { path: 'products', element: <Products /> },
-        { path: 'products/:id', element: <ProductDetails /> },
-        { path: 'blog', element: <Blog /> },
-        { path: 'call-us', element: <CallUs /> },
-        { path: 'leave-mesage', element: <LeaveMessage /> },
-        { path: 'contact-us', element: <ContactUs /> },
-        { path: 'sign-in', element: <SignIn /> },
-        { path: 'sign-up', element: <SignUp /> },
-        { path: 'contact', element: <Contact /> }
+        { path: '/reviews', element: <Reviews /> },
+        { path: '/cart', element: <Cart /> },
+        { path: '/aboutmore', element: <AboutMore /> },
+        { path: '/about', element: <About /> },
+        { path: '/products', element: <Products /> },
+        { path: '/products/:id', element: <ProductDetails /> },
+        { path: '/blog', element: <Blog /> },
+        { path: '/call-us', element: <CallUs /> },
+        { path: '/leave-mesage', element: <LeaveMessage /> },
+        { path: '/contact-us', element: <ContactUs /> },
+        { path: '/sign-in', element: <SignIn /> },
+        { path: '/sign-up', element: <SignUp /> },
+        { path: '/contact', element: <Contact /> }
       ]
     },
     {

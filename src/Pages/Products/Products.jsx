@@ -1,4 +1,3 @@
-// Products.jsx
 import { useEffect, useState } from "react";
 import ProductItem from "./_components/ProductsItem";
 
