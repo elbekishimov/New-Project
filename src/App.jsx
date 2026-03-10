@@ -18,7 +18,6 @@ import ContactUs from './Pages/Blog/_components/ContactUs'
 import ServiceDetails from './Pages/Services/_components/ServiceDetails'
 import ScheduleAppointment from './Pages/Home/_components/Schedule'
 
-// Layout komponenti (Navbar va Footer har doim ko'rinishi uchun)
 const Layout = () => (
   <>
     <Navbar />
@@ -31,9 +30,9 @@ function App() {
   const routes = createBrowserRouter([
     {
       path: '/',
-      element: <Navbar />, 
+      element: <Layout />,
       children: [
-        { index: true, element: <Home /> }, 
+        { index: true, element: <Home /> },
         { path: 'home', element: <Home /> },
         { path: 'scheduleAppointment', element: <ScheduleAppointment /> },
         {
