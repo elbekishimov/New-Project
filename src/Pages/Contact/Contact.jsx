@@ -1,135 +1,147 @@
-import contactHero from '../../IMG/service-hero.png'
+import { Mail, Phone, MapPin, Clock, Send, Globe, MessageSquare } from 'lucide-react';
+import contactHero from '../../IMG/service-hero.png';
 
 export default function Contact() {
+  const contactDetails = [
+    { icon: <MapPin className="text-blue-500" />, title: "Bizning Manzil", content: "123 Medical Avenue, Suite 400, New York, NY 10001" },
+    { icon: <Phone className="text-blue-500" />, title: "Telefon", content: "+1 (800) 123-4567" },
+    { icon: <Mail className="text-blue-500" />, title: "Email", content: "support@medicalrcm.com" },
+    { icon: <Clock className="text-blue-500" />, title: "Ish Vaqti", content: "Dush - Jum: 9:00 - 18:00" },
+  ];
+
   return (
-    <>
-      <section className="py-16 px-4 md:px-12 lg:px-24">
-        <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-12">
+    <div className="bg-slate-50 min-h-screen">
 
-          <div className="flex-1 space-y-6 text-center md:text-left">
-            <h1 className="text-4xl md:text-5xl font-bold text-slate-900 leading-tight">
-              Get In <span className="text-blue-600">Touch With Us</span>
+      <section className="relative py-20 px-4 md:px-12 lg:px-24 bg-white overflow-hidden">
+        <div className="max-w-7xl mx-auto flex flex-col lg:flex-row items-center gap-16 relative z-10">
+          <div className="flex-1 space-y-8 text-center lg:text-left">
+            <div className="inline-block px-4 py-1 bg-blue-100 text-blue-600 rounded-full text-sm font-bold tracking-widest uppercase">
+              Biz bilan bog'laning
+            </div>
+            <h1 className="text-4xl md:text-6xl font-black text-slate-900 leading-tight">
+              Sizga <span className="text-blue-600 italic">Yordam</span> Berishga Tayyormiz
             </h1>
-
-            <p className="text-lg text-slate-600 leading-relaxed max-w-xl">
-              Have questions about our Revenue Cycle Management services?
-              Our team is ready to assist you. Contact us today and discover
-              how we can streamline your billing processes and maximize your revenue.
+            <p className="text-xl text-slate-600 leading-relaxed max-w-xl mx-auto lg:mx-0">
+              Billing jarayonlarini avtomatlashtirish yoki daromadlarni oshirish bo'yicha savollaringiz bormi? Mutaxassislarimiz 24 soat ichida sizga javob berishadi.
             </p>
+            <div className="flex flex-wrap gap-4 justify-center lg:justify-start">
+              <button className="flex items-center gap-2 bg-slate-900 text-white px-8 py-4 rounded-2xl font-bold hover:bg-blue-600 transition-all shadow-lg">
+                <MessageSquare size={20} /> Live Chat
+              </button>
+              <button className="flex items-center gap-2 bg-white border-2 border-slate-200 text-slate-800 px-8 py-4 rounded-2xl font-bold hover:border-blue-600 transition-all">
+                <Globe size={20} /> Global Support
+              </button>
+            </div>
           </div>
-
-          <div className="flex-1 w-full max-w-lg">
+          <div className="flex-1 relative">
+            <div className="absolute -top-10 -left-10 w-40 h-40 bg-blue-200 rounded-full blur-3xl opacity-50 animate-pulse"></div>
             <img
-              className="w-full h-auto object-cover rounded-2xl shadow-2xl"
+              className="w-full h-auto object-cover rounded-[3rem] shadow-[0_20px_50px_rgba(0,0,0,0.1)] border-8 border-white relative z-10"
               src={contactHero}
               alt="Contact Medical Billing Team"
             />
           </div>
-
         </div>
       </section>
 
-      <section className="py-10 px-4 md:px-12 flex justify-center">
-        <div className="max-w-7xl w-full border-2 border-sky-500 rounded-[2.5rem] bg-gradient-to-r from-sky-50 to-orange-50/40 p-8 md:p-16">
+      <section className="py-20 px-4 md:px-12 lg:px-24 -mt-20 relative z-20">
+        <div className="max-w-7xl mx-auto">
+          <div className="bg-white rounded-[3rem] shadow-2xl shadow-slate-200/50 overflow-hidden flex flex-col lg:flex-row border border-slate-100">
 
-          <div className="grid md:grid-cols-2 gap-12">
+            <div className="lg:w-1/3 bg-blue-600 p-12 text-white flex flex-col justify-between relative overflow-hidden">
+              <div className="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full -mr-16 -mt-16"></div>
 
-            <div className="space-y-6">
-              <h2 className="text-3xl md:text-4xl font-bold text-sky-500">
-                Contact Information
-              </h2>
-
-              <p className="text-slate-500 text-lg leading-relaxed">
-                Reach out to our experienced RCM specialists for personalized
-                consultation and support. We ensure quick response times and
-                professional communication.
-              </p>
-
-              <div className="space-y-4 text-slate-600">
+              <div className="space-y-12 relative z-10">
                 <div>
-                  <h4 className="font-semibold text-slate-800">Address</h4>
-                  <p>123 Medical Avenue, Suite 400</p>
-                  <p>New York, NY 10001</p>
+                  <h2 className="text-3xl font-bold mb-4">Aloqa Ma'lumotlari</h2>
+                  <p className="text-blue-100">Biz bilan bog'lanishning bir necha oson yo'llari mavjud.</p>
                 </div>
 
-                <div>
-                  <h4 className="font-semibold text-slate-800">Phone</h4>
-                  <p>+1 (800) 123-4567</p>
+                <div className="space-y-8">
+                  {contactDetails.map((item, i) => (
+                    <div key={i} className="flex items-start gap-4 group">
+                      <div className="p-3 bg-white/10 rounded-xl group-hover:bg-white/20 transition-colors">
+                        {item.icon}
+                      </div>
+                      <div>
+                        <h4 className="font-bold text-white/70 text-sm uppercase tracking-wider">{item.title}</h4>
+                        <p className="text-lg font-medium">{item.content}</p>
+                      </div>
+                    </div>
+                  ))}
                 </div>
+              </div>
 
-                <div>
-                  <h4 className="font-semibold text-slate-800">Email</h4>
-                  <p>support@medicalrcm.com</p>
-                </div>
-
-                <div>
-                  <h4 className="font-semibold text-slate-800">Working Hours</h4>
-                  <p>Monday – Friday: 9:00 AM – 6:00 PM</p>
-                </div>
+              <div className="mt-16 pt-8 border-t border-white/20 flex gap-6">
+                {['Facebook', 'LinkedIn', 'Twitter'].map(social => (
+                  <a key={social} href="#" className="text-sm font-bold hover:text-blue-200 underline decoration-blue-400">{social}</a>
+                ))}
               </div>
             </div>
 
-            <div className="bg-white rounded-2xl shadow-xl p-8">
-              <form className="space-y-6">
-
-                <div>
-                  <label className="block text-sm font-medium text-slate-700 mb-2">
-                    Full Name
-                  </label>
+            <div className="lg:w-2/3 p-12 md:p-16">
+              <h2 className="text-3xl font-bold text-slate-900 mb-8">Xabar Yo'llang</h2>
+              <form className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div className="space-y-2">
+                  <label className="text-sm font-bold text-slate-500 ml-1 italic">To'liq ismingiz</label>
                   <input
                     type="text"
-                    placeholder="Enter your full name"
-                    className="w-full border border-slate-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-sky-500 transition"
+                    placeholder="Ism va familiya"
+                    className="w-full bg-slate-50 border-2 border-slate-100 rounded-2xl px-6 py-4 focus:outline-none focus:border-blue-500 focus:bg-white transition-all"
                   />
                 </div>
-
-                <div>
-                  <label className="block text-sm font-medium text-slate-700 mb-2">
-                    Email Address
-                  </label>
+                <div className="space-y-2">
+                  <label className="text-sm font-bold text-slate-500 ml-1 italic">Email manzilingiz</label>
                   <input
                     type="email"
-                    placeholder="Enter your email"
-                    className="w-full border border-slate-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-sky-500 transition"
+                    placeholder="example@mail.com"
+                    className="w-full bg-slate-50 border-2 border-slate-100 rounded-2xl px-6 py-4 focus:outline-none focus:border-blue-500 focus:bg-white transition-all"
                   />
                 </div>
-
-                <div>
-                  <label className="block text-sm font-medium text-slate-700 mb-2">
-                    Phone Number
-                  </label>
-                  <input
-                    type="tel"
-                    placeholder="Enter your phone number"
-                    className="w-full border border-slate-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-sky-500 transition"
-                  />
+                <div className="md:col-span-2 space-y-2">
+                  <label className="text-sm font-bold text-slate-500 ml-1 italic">Mavzu</label>
+                  <select className="w-full bg-slate-50 border-2 border-slate-100 rounded-2xl px-6 py-4 focus:outline-none focus:border-blue-500 focus:bg-white transition-all appearance-none cursor-pointer">
+                    <option>Xizmatlar haqida savol</option>
+                    <option>Narxlar tahlili</option>
+                    <option>Texnik yordam</option>
+                    <option>Hamkorlik</option>
+                  </select>
                 </div>
-
-                <div>
-                  <label className="block text-sm font-medium text-slate-700 mb-2">
-                    Message
-                  </label>
+                <div className="md:col-span-2 space-y-2">
+                  <label className="text-sm font-bold text-slate-500 ml-1 italic">Xabar matni</label>
                   <textarea
-                    rows="4"
-                    placeholder="Write your message here..."
-                    className="w-full border border-slate-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-sky-500 transition"
+                    rows="5"
+                    placeholder="Qanday yordam bera olamiz?"
+                    className="w-full bg-slate-50 border-2 border-slate-100 rounded-2xl px-6 py-4 focus:outline-none focus:border-blue-500 focus:bg-white transition-all resize-none"
                   ></textarea>
                 </div>
-
-                <button
-                  type="submit"
-                  className="w-full bg-blue-600 hover:bg-blue-700 text-white py-3 rounded-lg font-semibold shadow-lg hover:shadow-blue-200 transition-all"
-                >
-                  Send Message
-                </button>
-
+                <div className="md:col-span-2">
+                  <button
+                    type="submit"
+                    className="w-full sm:w-auto bg-blue-600 hover:bg-blue-700 text-white px-12 py-5 rounded-2xl font-black text-lg shadow-xl shadow-blue-200 hover:-translate-y-1 transition-all flex items-center justify-center gap-3"
+                  >
+                    Yuborish <Send size={20} />
+                  </button>
+                </div>
               </form>
             </div>
 
           </div>
-
         </div>
       </section>
-    </>
+
+      <section className="pb-20 px-4 md:px-12">
+        <div className="max-w-7xl mx-auto h-[400px] bg-slate-200 rounded-[3rem] overflow-hidden border-8 border-white shadow-xl flex items-center justify-center relative">
+          <div className="text-center z-10">
+            <div className="bg-white p-4 rounded-full shadow-lg inline-block mb-4">
+              <MapPin className="text-blue-600 animate-bounce" size={32} />
+            </div>
+            <h3 className="text-xl font-bold text-slate-800">Google Maps Joylashuvi</h3>
+            <p className="text-slate-500 text-sm mt-2">Bu yerda sizning ofisingiz manzili ko'rinadi.</p>
+          </div>
+          <div className="absolute inset-0 opacity-20 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')]"></div>
+        </div>
+      </section>
+    </div>
   )
 }

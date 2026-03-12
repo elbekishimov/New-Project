@@ -1,24 +1,50 @@
-import { useNavigate, useNavigation } from "react-router-dom"
-
+import { useNavigate } from "react-router-dom";
 
 export default function ProductItem({ product }) {
     const navigate = useNavigate();
 
-    const handlBuy = (id) => {
-        navigate(`/products/${id}`)
-    }
-
     return (
-        <div className="border rounded-md p-4">
-            <div className="w-full h-[250px] rounded-md border mb-3">
-                <img className="w-full h-full object-cover" src={product.image} alt="" />
+        <div className="group bg-white border border-slate-100 rounded-2xl p-4 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col h-full">
+            {/* Image Container */}
+            <div className="relative w-full h-[220px] rounded-xl overflow-hidden bg-slate-50 mb-4">
+                <img
+                    className="w-full h-full object-contain mix-blend-multiply transition-transform duration-500 group-hover:scale-110"
+                    src={product.image}
+                    alt={product.name}
+                />
+                {/* Badge (Optional: New or Sale) */}
+                <div className="absolute top-2 left-2 bg-red-500 text-white text-[10px] font-bold px-2 py-1 rounded-md shadow-sm">
+                    SALE
+                </div>
             </div>
-            <div className="px-4">
-                <h5 className="mb-2 line-clamp-2">{product.name}</h5>
-                <h4 className="mb-3 text-[15px] font-bold">${product.price}</h4>
-                <p className="mb-2 text-[10px] text-gray-600 line-clamp-3">{product.description}</p>
-                <button onClick={() => handlBuy(product.id)} className="px-5 py-2 rounded cursor-pointer bg-red-600 text-white">Sotib olish</button>
+
+            {/* Product Content */}
+            <div className="flex flex-col flex-1">
+                <div className="flex items-center gap-1 mb-1 text-yellow-400">
+                    {/* Visual Stars */}
+                    {"★★★★★".split("").map((s, i) => <span key={i} className="text-xs">{s}</span>)}
+                    <span className="text-gray-400 text-[10px] ml-1">(4.5)</span>
+                </div>
+
+                <h5 className="text-slate-800 font-semibold mb-2 line-clamp-2 group-hover:text-blue-600 transition-colors">
+                    {product.name}
+                </h5>
+
+                <div className="mt-auto">
+                    <div className="flex items-baseline gap-2 mb-4">
+                        <span className="text-xl font-bold text-slate-900">${product.price}</span>
+                        <span className="text-sm text-gray-400 line-through">${(product.price * 1.2).toFixed(2)}</span>
+                    </div>
+
+                    <button
+                        onClick={() => navigate(`/products/${product.id}`)}
+                        className="w-full bg-slate-900 hover:bg-blue-600 text-white py-2.5 rounded-xl font-medium transition-colors flex items-center justify-center gap-2 group/btn"
+                    >
+                        Batafsil ko'rish
+                        <span className="group-hover/btn:translate-x-1 transition-transform">→</span>
+                    </button>
+                </div>
             </div>
         </div>
-    )
+    );
 }

