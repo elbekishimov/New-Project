@@ -8,16 +8,17 @@ import post6 from '../../../IMG/post6.png'
 
 export default function Practic() {
     const services = [
-        { img: post1, title: "CODING AND MEDICAL BILLING", desc: "Accurate medical billing and coding play a crucial role in securing reimbursements promptly. Precision is key; even minor errors can cause payment delays. At Right Medical Billing, our dedicated team ensures healthcare facilities receive rightful reimbursements." },
-        { img: post2, title: "Accounts Management", desc: "At Vcare Medical Billing, we proactively handle your practice's accounts receivable. Identifying any pending payments, we diligently pursue outstanding balances from patients or payors to ensure an efficient workflow." },
-        { img: post3, title: "Credentialing & Contracting", desc: "Establishing a healthcare facility hinges on credentialing and contracting. At RMB, we negotiate insurance payer contracts and maintain their currency, enabling you to achieve optimal reimbursement rates." },
-        { img: post4, title: "Out-of-Network Negotiations", desc: "We adeptly negotiate out-of-network claims with major pricing vendors like Multiplan, Zelis, and Viant. Leveraging decades of expertise, our team excels in this intricate aspect of billing specialists." },
-        { img: post5, title: "Eligibility Verification", desc: "Accurate eligibility and insurance benefits verification are crucial for obtaining precise information on coverage. We confirm each patient's eligibility to secure payment before services are rendered." },
-        { img: post6, title: "Complete RCM Services", desc: "Vcare manages the entire revenue cycle, supporting from patient arrival to payment receipt. We assist in compliance, workflow, and staff training, acting as a direct extension of your professional team." },
+        { img: post1, title: "TIBBIY KODLASH VA BILLING", desc: "Aniq tibbiy billing va kodlash to'lovlarni o'z vaqtida qabul qilishda muhim rol o'ynaydi. Hatto kichik xatolar ham to'lov kechikishiga sabab bo'lishi mumkin." },
+        { img: post2, title: "Hisoblarni Boshqarish", desc: "Vcare Medical Billing'da biz sizning amaliyotingizdagi debitorlik qarzlarini faol ravishda boshqaramiz va to'lovlar oqimini ta'minlaymiz." },
+        { img: post3, title: "Kredentsiallash va Shartnomalar", desc: "Tibbiy muassasa tashkil etish shartnomalar tuzishga bog'liq. Biz sug'urta kompaniyalari bilan eng yaxshi tariflar bo'yicha muzokaralar olib boramiz." },
+        { img: post4, title: "Tarmoqdan Tashqari Muzokaralar", desc: "Biz Multiplan, Zelis va Viant kabi yirik provayderlar bilan tarmoqdan tashqari da'volarni professional darajada hal qilamiz." },
+        { img: post5, title: "Sug'urtani Tekshirish", desc: "Bemorlarga xizmat ko'rsatishdan oldin ularning sug'urta qoplamasi va imtiyozlarini aniq tekshirish orqali to'lov kafolatini ta'minlaymiz." },
+        { img: post6, title: "To'liq RCM Xizmatlari", desc: "Vcare bemor kelganidan boshlab to'lov qabul qilinguncha bo'lgan barcha jarayonlarni boshqaradi va xodimlaringizni o'qitadi." },
     ];
 
     return (
         <div className="bg-white">
+            {/* HERO SECTION */}
             <section className="py-20 px-4 sm:px-6 md:px-12 lg:px-24 bg-gradient-to-r from-slate-900 to-slate-800 text-white relative overflow-hidden">
                 <div className="absolute top-0 right-0 w-64 h-64 bg-sky-500/10 rounded-full blur-3xl -mr-20 -mt-20"></div>
 
@@ -25,34 +26,35 @@ export default function Practic() {
                     <div className="flex flex-col lg:flex-row items-center justify-between gap-12">
                         <div className="w-full lg:w-3/5 space-y-8 text-center lg:text-left">
                             <span className="bg-sky-500/20 text-sky-400 px-4 py-1.5 rounded-full text-sm font-bold tracking-widest uppercase border border-sky-500/30">
-                                Trusted Partnership
+                                Ishonchli Hamkorlik
                             </span>
                             <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold leading-tight">
-                                Know Our <span className="text-sky-400">Clients & Expertise</span>
+                                Mijozlarimiz va <span className="text-sky-400">Tajribamiz</span> haqida
                             </h1>
                             <p className="text-lg sm:text-xl text-slate-300 leading-relaxed max-w-3xl">
-                                As a trusted authority in medical billing, we cater to a diverse spectrum of healthcare organizations. Our industry-standing reputation is a testament to our reliability, ensuring seamless operations and financial transparency for every specialty.
+                                Tibbiy billing sohasida ishonchli vakil sifatida biz turli xil sog'liqni saqlash tashkilotlariga xizmat ko'rsatamiz. Bizning obro'yimiz moliyaviy shaffoflik va uzluksiz operatsiyalar kafolatidir.
                             </p>
                             <div className="flex flex-wrap gap-4 justify-center lg:justify-start">
                                 <Link to={'/scheduleAppointment'} className="bg-sky-500 text-white font-bold py-4 px-10 rounded-xl shadow-xl hover:bg-sky-600 transition-all transform hover:-translate-y-1">
-                                    Schedule Appointment
+                                    Uchrashuv belgilash
                                 </Link>
                                 <button className="bg-transparent border-2 border-slate-500 text-white font-bold py-4 px-10 rounded-xl hover:bg-slate-700 transition-all">
-                                    View Specialties
+                                    Mutaxassisliklarni ko'rish
                                 </button>
                             </div>
                         </div>
                         <div className="w-full lg:w-2/5 flex justify-center lg:justify-end">
-                            <img src={post1} alt="Professional Team" className="max-w-md w-full drop-shadow-2xl animate-pulse" style={{ animationDuration: '4s' }} />
+                            <img src={post1} alt="Professional Jamoa" className="max-w-md w-full drop-shadow-2xl animate-pulse" style={{ animationDuration: '4s' }} />
                         </div>
                     </div>
                 </div>
             </section>
 
+            {/* SERVICES GRID */}
             <div className='py-20 px-4 sm:px-6 md:px-12 lg:px-24 bg-gray-50'>
                 <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
-                    <h2 className='text-3xl sm:text-4xl md:text-5xl text-slate-900 font-bold'>Medical Billing <span className="text-sky-600">Specialties</span></h2>
-                    <p className="text-slate-600 italic text-lg">"We provide tailored billing solutions for a wide range of medical practices."</p>
+                    <h2 className='text-3xl sm:text-4xl md:text-5xl text-slate-900 font-bold'>Tibbiy Billing <span className="text-sky-600">Yo'nalishlari</span></h2>
+                    <p className="text-slate-600 italic text-lg">"Biz har bir tibbiy amaliyot uchun maxsus tayyorlangan billing yechimlarini taqdim etamiz."</p>
                     <div className="h-1.5 w-24 bg-sky-500 mx-auto rounded-full"></div>
                 </div>
 
@@ -62,7 +64,7 @@ export default function Practic() {
                             <div className="relative overflow-hidden h-64">
                                 <img src={service.img} alt={service.title} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" />
                                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-6">
-                                    <span className="text-white font-semibold underline decoration-sky-400">Read more details</span>
+                                    <span className="text-white font-semibold underline decoration-sky-400">Batafsil o'qish</span>
                                 </div>
                             </div>
                             <div className="p-8 flex-1 flex flex-col justify-between">
@@ -71,7 +73,7 @@ export default function Practic() {
                                     <p className='text-slate-600 leading-relaxed text-base'>{service.desc}</p>
                                 </div>
                                 <div className="mt-6 pt-6 border-t border-slate-50 flex items-center text-sky-600 font-bold group-hover:gap-3 transition-all">
-                                    Learn More <span>→</span>
+                                    Batafsil Ma'lumot <span>→</span>
                                 </div>
                             </div>
                         </div>
@@ -79,12 +81,12 @@ export default function Practic() {
                 </div>
             </div>
 
-            {/* 3. WHO WE SERVE - Yangi qo'shilgan qism */}
+            {/* WHO WE SERVE */}
             <section className="py-20 bg-white px-4 md:px-12 lg:px-24">
                 <div className="max-w-7xl mx-auto border-2 border-dashed border-slate-200 rounded-[3rem] p-12 text-center bg-slate-50/50">
-                    <h2 className="text-3xl font-bold text-slate-900 mb-12">Who We Serve</h2>
+                    <h2 className="text-3xl font-bold text-slate-900 mb-12">Kimlarga Xizmat Ko'rsatamiz?</h2>
                     <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-                        {["Hospitals", "Solo Practices", "Urgent Care", "Ambulatory Centers", "Laboratories", "Dental Clinics", "Nursing Homes", "Emergency Rooms"].map((item, i) => (
+                        {["Kasalxonalar", "Xususiy Klinikalar", "Tez Tibbiy Yordam", "Ambulatoriya Markazlari", "Laboratoriyalar", "Stomatologiyalar", "Qariyalar Uylari", "Favqulodda Yordam"].map((item, i) => (
                             <div key={i} className="flex flex-col items-center gap-3">
                                 <div className="w-12 h-12 bg-white rounded-full shadow-md flex items-center justify-center text-sky-500 font-bold">
                                     {i + 1}
@@ -96,24 +98,24 @@ export default function Practic() {
                 </div>
             </section>
 
-            {/* 4. STATISTICS - Ishonch uchun raqamlar */}
+            {/* STATISTICS */}
             <section className="py-16 bg-sky-600 text-white">
                 <div className="max-w-7xl mx-auto px-4 grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
                     <div>
                         <div className="text-4xl font-black mb-2">99.9%</div>
-                        <div className="text-sky-100">Accuracy Rate</div>
+                        <div className="text-sky-100">Aniqlik Darajasi</div>
                     </div>
                     <div>
                         <div className="text-4xl font-black mb-2">25+</div>
-                        <div className="text-sky-100">Years Experience</div>
+                        <div className="text-sky-100">Yillik Tajriba</div>
                     </div>
                     <div>
-                        <div className="text-4xl font-black mb-2">24h</div>
-                        <div className="text-sky-100">Claim Submission</div>
+                        <div className="text-4xl font-black mb-2">24s</div>
+                        <div className="text-sky-100">Da'vo Yuborish</div>
                     </div>
                     <div>
                         <div className="text-4xl font-black mb-2">1M+</div>
-                        <div className="text-sky-100">Claims Processed</div>
+                        <div className="text-sky-100">Tasdiqlangan To'lovlar</div>
                     </div>
                 </div>
             </section>
