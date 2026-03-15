@@ -38,10 +38,8 @@ export default function Navbar() {
                 </div>
 
                 <div className="flex items-center gap-4">
-                    {/* Dark Mode Toggle */}
                     <ThemeToggle />
 
-                    {/* Til tanlagich */}
                     <div className={`flex gap-2 items-center rounded-lg p-1 ${
                         isDarkMode ? 'bg-gray-800' : 'bg-gray-100'
                     }`}>
@@ -111,7 +109,6 @@ export default function Navbar() {
                 </div>
             </div>
             
-            {/* Mobile Menu */}
             {menuOpen && (
                 <div className={`md:hidden border-b transition-colors duration-300 ${
                     isDarkMode ? 'bg-gray-900 border-gray-700' : 'bg-white border-gray-200'

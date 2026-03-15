@@ -24,7 +24,6 @@ export const ThemeProvider = ({ children }) => {
 
   useEffect(() => {
     try {
-      // String sifatida saqlaymiz
       localStorage.setItem('theme', isDarkMode ? 'dark' : 'light');
       if (isDarkMode) {
         document.documentElement.classList.add('dark');

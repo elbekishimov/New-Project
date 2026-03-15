@@ -1,7 +1,7 @@
 import { useTranslation } from 'react-i18next';
 import { Link } from "react-router-dom";
-import { motion } from 'framer-motion'; // Animatsiya uchun
-import { Home, ArrowLeft } from 'lucide-react'; // Ikonkalar uchun
+import { motion } from 'framer-motion'; 
+import { Home, ArrowLeft } from 'lucide-react'; 
 
 export default function NotFound() {
   const { t } = useTranslation();
@@ -9,7 +9,6 @@ export default function NotFound() {
   return (
     <div className="min-h-screen flex items-center justify-center bg-[#F8FAFC] px-4 overflow-hidden relative">
       
-      {/* Orqa fondagi dekorativ elementlar */}
       <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
         <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-blue-50 rounded-full blur-[120px] opacity-60"></div>
         <div className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-indigo-50 rounded-full blur-[120px] opacity-60"></div>
@@ -17,7 +16,6 @@ export default function NotFound() {
 
       <div className="text-center relative z-10">
         
-        {/* 404 Raqami animatsiyasi */}
         <motion.div
           initial={{ opacity: 0, scale: 0.5 }}
           animate={{ opacity: 1, scale: 1 }}
@@ -27,7 +25,6 @@ export default function NotFound() {
           <h1 className="text-[12rem] md:text-[16rem] font-black text-slate-900 leading-none tracking-tighter select-none">
             404
           </h1>
-          {/* Suzib yuruvchi kichik nuqta */}
           <motion.div 
             animate={{ y: [0, -15, 0] }}
             transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
@@ -35,7 +32,6 @@ export default function NotFound() {
           ></motion.div>
         </motion.div>
 
-        {/* Sarlavha */}
         <motion.h2 
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -45,7 +41,6 @@ export default function NotFound() {
           {t('notFound.title') || "Sahifa topilmadi"}
         </motion.h2>
 
-        {/* Tavsif */}
         <motion.p 
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -55,7 +50,6 @@ export default function NotFound() {
           {t('notFound.desc') || "Kechirasiz, siz qidirayotgan sahifa mavjud emas yoki ko'chirib yuborilgan."}
         </motion.p>
 
-        {/* Tugmalar */}
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}

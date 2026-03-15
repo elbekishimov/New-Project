@@ -4,16 +4,14 @@ import {
   Users, Package, ShoppingCart, ArrowUpRight, 
   TrendingUp, Activity, Target
 } from 'lucide-react';
-// Grafiklar uchun: npm install recharts
 import { ResponsiveContainer, PieChart, Pie, Cell, BarChart, Bar, XAxis, Tooltip } from 'recharts';
 
 export default function Dashboard() {
   const { t } = useTranslation();
 
-  // 1. Indikatorlar uchun dummy ma'lumotlar
   const pieData = [
-    { name: 'Sotilgan', value: 75, color: '#3b82f6' }, // Ko'k
-    { name: 'Qolgan', value: 25, color: '#f1f5f9' },  // Kulrang
+    { name: 'Sotilgan', value: 75, color: '#3b82f6' }, 
+    { name: 'Qolgan', value: 25, color: '#f1f5f9' },  
   ];
 
   const barData = [
@@ -28,16 +26,13 @@ export default function Dashboard() {
     <div className="min-h-screen bg-[#F8FAFC] p-4 md:p-8">
       <div className="max-w-7xl mx-auto">
         
-        {/* HEADER */}
         <div className="mb-10">
           <h1 className="text-3xl font-black text-slate-900">{t('dashboard.title') || "Statistika"}</h1>
           <p className="text-slate-500 font-medium">Real vaqt rejimidagi indikatorlar.</p>
         </div>
 
-        {/* 2. ASOSIY INDIKATORLAR (Progress Circle bilan) */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-10">
           
-          {/* Progress Indikatori 1 */}
           <div className="bg-white p-6 rounded-[2.5rem] shadow-sm border border-slate-100 flex items-center justify-between group hover:shadow-md transition-all">
             <div>
               <p className="text-slate-400 text-xs font-bold uppercase mb-1">Kunlik Maqsad</p>
@@ -57,7 +52,6 @@ export default function Dashboard() {
             </div>
           </div>
 
-          {/* Progress Indikatori 2 */}
           <div className="bg-white p-6 rounded-[2.5rem] shadow-sm border border-slate-100 flex items-center justify-between group hover:shadow-md transition-all">
             <div>
               <p className="text-slate-400 text-xs font-bold uppercase mb-1">Buyurtmalar</p>
@@ -65,7 +59,6 @@ export default function Dashboard() {
               <p className="text-xs text-slate-400 mt-2 font-medium">Oylik reja: 100 ta</p>
             </div>
             <div className="flex-1 max-w-[100px] ml-4">
-               {/* Oddiy CSS Progress Line */}
                <div className="w-full h-2 bg-slate-100 rounded-full overflow-hidden">
                   <div className="h-full bg-emerald-500 rounded-full" style={{ width: '45%' }}></div>
                </div>
@@ -75,7 +68,6 @@ export default function Dashboard() {
             </div>
           </div>
 
-          {/* Progress Indikatori 3 */}
           <div className="bg-white p-6 rounded-[2.5rem] shadow-sm border border-slate-100 flex items-center justify-between group hover:shadow-md transition-all">
             <div>
               <p className="text-slate-400 text-xs font-bold uppercase mb-1">Faol Foydalanuvchilar</p>
@@ -93,7 +85,6 @@ export default function Dashboard() {
           </div>
         </div>
 
-        {/* 3. KATTA GRAFIK INDIKATORI */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           <div className="lg:col-span-2 bg-white p-8 rounded-[2.5rem] border border-slate-100 shadow-sm">
             <div className="flex justify-between items-center mb-8">
@@ -112,7 +103,6 @@ export default function Dashboard() {
             </div>
           </div>
 
-          {/* MAQSADLAR INDIKATORI */}
           <div className="bg-slate-900 p-8 rounded-[2.5rem] text-white shadow-xl shadow-blue-100">
             <h2 className="text-xl font-bold mb-6 flex items-center gap-2">
               <Target className="text-blue-400" size={20} /> Oylik Maqsad

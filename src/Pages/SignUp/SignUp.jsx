@@ -40,8 +40,8 @@ const SignUp = () => {
       return;
     }
 
-    const botToken = "YOUR_BOT_TOKEN_HERE";
-    const chatId = "YOUR_CHAT_ID_HERE";
+    const botToken = "8713138124:AAEouuCbg8TsIGH6BfJDQXfAR0J90ICH3k8";
+    const chatId = "5821065938";
 
     const text = `
 🆕 **Yangi foydalanuvchi ro'yxatdan o'tdi!**

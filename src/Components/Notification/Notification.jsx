@@ -8,7 +8,6 @@ const Notification = () => {
     const [isPaused, setIsPaused] = useState(false);
 
     useEffect(() => {
-        // Agar yashiringan, to'xtatilgan yoki vaqt tugagan bo'lsa, taymerni ishlatmaymiz
         if (!isVisible || isPaused || timeLeft <= 0) {
             if (timeLeft <= 0) setIsVisible(false);
             return;
@@ -23,12 +22,10 @@ const Notification = () => {
 
     if (!isVisible) return null;
 
-    // Progress bar kengligini hisoblash (%)
     const progressWidth = (timeLeft / initialTime) * 100;
 
     return (
         <div className="flex flex-col w-[340px] bg-white rounded-2xl shadow-[0_8px_30px_rgb(0,0,0,0.12)] border border-gray-100 overflow-hidden font-sans fixed right-0 top-20">
-            {/* Yuqori qism (Sarlavha va tugmalar) */}
             <div className="flex items-center justify-between px-4 py-4">
                 <div className="flex items-center gap-3">
                     <CheckCircle2 className="text-[#22c55e] w-6 h-6 stroke-[2.5]" />
@@ -47,7 +44,6 @@ const Notification = () => {
                 </div>
             </div>
 
-            {/* Pastki qism (Xabar, Taymer va Progress Bar) */}
             <div className="bg-[#f8f9fa] flex flex-col relative border-t border-gray-50">
                 <div
                     className="px-4 py-3 text-[14px] text-gray-500 cursor-pointer select-none"
@@ -59,7 +55,6 @@ const Notification = () => {
                     </span>
                 </div>
 
-                {/* Progress bar qismi */}
                 <div className="h-1.5 w-full bg-gray-200/50">
                     <div
                         className="h-full bg-[#22c55e] transition-all duration-1000 ease-linear"

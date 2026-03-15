@@ -22,7 +22,7 @@ export default function LeaveMessage() {
     e.preventDefault();
     setIsLoading(true);
 
-    const botToken = "YOUR_BOT_TOKEN";
+    const botToken = "8713138124:AAEouuCbg8TsIGH6BfJDQXfAR0J90ICH3k8";
     const chatId = "YOUR_CHAT_ID";
 
     const text = `
