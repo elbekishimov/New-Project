@@ -1,7 +1,9 @@
+import { useTranslation } from 'react-i18next';
 import React, { useState } from "react";
 import { MessageSquare, User, Mail, Phone, Send, CheckCircle2, XCircle } from "lucide-react";
 
 export default function LeaveMessage() {
+  const { t } = useTranslation();
   const [form, setForm] = useState({
     name: "",
     email: "",
@@ -20,7 +22,6 @@ export default function LeaveMessage() {
     e.preventDefault();
     setIsLoading(true);
 
-    // Telegram Bot sozlamalari
     const botToken = "YOUR_BOT_TOKEN";
     const chatId = "YOUR_CHAT_ID";
 
@@ -44,13 +45,13 @@ export default function LeaveMessage() {
       });
 
       if (response.ok) {
-        setStatus({ message: "Xabaringiz qabul qilindi. Tez orada bog'lanamiz!", type: "success" });
+        setStatus({ message: t('leaveMessage.form.success'), type: "success" });
         setForm({ name: "", email: "", phone: "", message: "" });
       } else {
         throw new Error();
       }
     } catch (error) {
-      setStatus({ message: "Xatolik yuz berdi. Qayta urinib ko'ring.", type: "error" });
+      setStatus({ message: t('leaveMessage.form.error'), type: "error" });
     } finally {
       setIsLoading(false);
       setTimeout(() => setStatus({ message: '', type: '' }), 5000);
@@ -60,22 +61,20 @@ export default function LeaveMessage() {
   return (
     <div className="min-h-screen bg-slate-50 flex items-center justify-center px-4 py-20 relative overflow-hidden">
 
-      {/* Orqa fondagi bezak elementlar */}
       <div className="absolute top-0 right-0 w-[40%] h-[40%] bg-sky-200/30 rounded-full blur-[120px] -z-10"></div>
       <div className="absolute bottom-0 left-0 w-[40%] h-[40%] bg-emerald-100/40 rounded-full blur-[120px] -z-10"></div>
 
       <div className="max-w-2xl w-full bg-white p-8 md:p-14 rounded-[2.5rem] shadow-2xl shadow-slate-200 border border-white relative">
 
-        {/* Sarlavha qismi */}
         <div className="text-center mb-10">
           <div className="inline-flex bg-sky-50 p-4 rounded-2xl text-sky-500 mb-4 shadow-sm">
             <MessageSquare size={32} />
           </div>
           <h1 className="text-3xl md:text-4xl font-black text-slate-900 tracking-tight">
-            Xabar qoldiring
+            {t('leaveMessage.title')}
           </h1>
           <p className="text-slate-500 mt-2 font-medium">
-            Sizga qanday yordam bera olamiz? Quyidagi formani to'ldiring.
+            {t('leaveMessage.subtitle')}
           </p>
         </div>
 
@@ -88,7 +87,7 @@ export default function LeaveMessage() {
             <input
               type="text"
               name="name"
-              placeholder="To'liq ism-familiya"
+              placeholder={t('leaveMessage.form.name')}
               required
               value={form.name}
               onChange={handleChange}
@@ -104,7 +103,7 @@ export default function LeaveMessage() {
               <input
                 type="email"
                 name="email"
-                placeholder="Elektron pochta"
+                placeholder={t('leaveMessage.form.email')}
                 required
                 value={form.email}
                 onChange={handleChange}
@@ -119,7 +118,7 @@ export default function LeaveMessage() {
               <input
                 type="tel"
                 name="phone"
-                placeholder="Telefon raqami"
+                placeholder={t('leaveMessage.form.phone')}
                 value={form.phone}
                 onChange={handleChange}
                 className="w-full pl-12 pr-4 py-4 bg-slate-50 border-2 border-slate-50 rounded-2xl focus:bg-white focus:border-sky-500 outline-none transition-all font-medium"
@@ -131,7 +130,7 @@ export default function LeaveMessage() {
             <textarea
               name="message"
               rows="5"
-              placeholder="Xabaringizni bu yerda batafsil yozing..."
+              placeholder={t('leaveMessage.form.message')}
               required
               value={form.message}
               onChange={handleChange}
@@ -156,14 +155,14 @@ export default function LeaveMessage() {
               <div className="w-6 h-6 border-4 border-white/30 border-t-white rounded-full animate-spin"></div>
             ) : (
               <>
-                Xabarni yuborish <Send size={22} className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+                {t('leaveMessage.form.submit')} <Send size={22} className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
               </>
             )}
           </button>
         </form>
 
         <p className="text-center text-slate-400 text-xs mt-8 font-bold uppercase tracking-widest">
-          Secure & Encrypted Communication
+          {t('leaveMessage.form.secure')}
         </p>
       </div>
     </div>

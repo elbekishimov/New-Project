@@ -1,7 +1,9 @@
+import { useTranslation } from 'react-i18next';
 import { useEffect, useState } from "react";
 import ProductItem from "./_components/ProductsItem";
 
 export default function Products() {
+  const { t } = useTranslation();
   const [data, setData] = useState([]);
 
   useEffect(() => {
@@ -17,10 +19,11 @@ export default function Products() {
     };
     fetchData();
   }, []);
+  
   return (
     <div className="grid grid-cols-4 gap-5 p-10">
       {data.length === 0 ? (
-        <h1>Loading...</h1>
+        <h1>{t('products.loading')}</h1>
       ) : (
         data.map((item) => (
           <div key={item.id} className="shadow p-3 rounded-xl">

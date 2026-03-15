@@ -1,12 +1,15 @@
+import { useTranslation } from 'react-i18next';
 import { Mail, Phone, MapPin, Clock, Send, Globe, MessageSquare } from 'lucide-react';
 import contactHero from '../../IMG/service-hero.png';
 
 export default function Contact() {
+  const { t } = useTranslation();
+  
   const contactDetails = [
-    { icon: <MapPin className="text-blue-500" />, title: "Bizning Manzil", content: "123 Medical Avenue, Suite 400, New York, NY 10001" },
-    { icon: <Phone className="text-blue-500" />, title: "Telefon", content: "+1 (800) 123-4567" },
-    { icon: <Mail className="text-blue-500" />, title: "Email", content: "support@medicalrcm.com" },
-    { icon: <Clock className="text-blue-500" />, title: "Ish Vaqti", content: "Dush - Jum: 9:00 - 18:00" },
+    { icon: <MapPin className="text-blue-500" />, title: t('contact.info.title'), content: "123 Medical Avenue, Suite 400, New York, NY 10001" },
+    { icon: <Phone className="text-blue-500" />, title: t('contact.info.title'), content: "+1 (800) 123-4567" },
+    { icon: <Mail className="text-blue-500" />, title: t('contact.info.title'), content: "support@medicalrcm.com" },
+    { icon: <Clock className="text-blue-500" />, title: t('contact.info.title'), content: "Mon - Fri: 9:00 - 18:00" },
   ];
 
   return (
@@ -16,20 +19,20 @@ export default function Contact() {
         <div className="max-w-7xl mx-auto flex flex-col lg:flex-row items-center gap-16 relative z-10">
           <div className="flex-1 space-y-8 text-center lg:text-left">
             <div className="inline-block px-4 py-1 bg-blue-100 text-blue-600 rounded-full text-sm font-bold tracking-widest uppercase">
-              Biz bilan bog'laning
+              {t('contact.hero.badge')}
             </div>
             <h1 className="text-4xl md:text-6xl font-black text-slate-900 leading-tight">
-              Sizga <span className="text-blue-600 italic">Yordam</span> Berishga Tayyormiz
+              {t('contact.hero.title')}
             </h1>
             <p className="text-xl text-slate-600 leading-relaxed max-w-xl mx-auto lg:mx-0">
-              Billing jarayonlarini avtomatlashtirish yoki daromadlarni oshirish bo'yicha savollaringiz bormi? Mutaxassislarimiz 24 soat ichida sizga javob berishadi.
+              {t('contact.hero.desc')}
             </p>
             <div className="flex flex-wrap gap-4 justify-center lg:justify-start">
               <button className="flex items-center gap-2 bg-slate-900 text-white px-8 py-4 rounded-2xl font-bold hover:bg-blue-600 transition-all shadow-lg">
-                <MessageSquare size={20} /> Live Chat
+                <MessageSquare size={20} /> {t('contact.hero.chat')}
               </button>
               <button className="flex items-center gap-2 bg-white border-2 border-slate-200 text-slate-800 px-8 py-4 rounded-2xl font-bold hover:border-blue-600 transition-all">
-                <Globe size={20} /> Global Support
+                <Globe size={20} /> {t('contact.hero.support')}
               </button>
             </div>
           </div>
@@ -53,8 +56,8 @@ export default function Contact() {
 
               <div className="space-y-12 relative z-10">
                 <div>
-                  <h2 className="text-3xl font-bold mb-4">Aloqa Ma'lumotlari</h2>
-                  <p className="text-blue-100">Biz bilan bog'lanishning bir necha oson yo'llari mavjud.</p>
+                  <h2 className="text-3xl font-bold mb-4">{t('contact.info.title')}</h2>
+                  <p className="text-blue-100">{t('contact.info.desc')}</p>
                 </div>
 
                 <div className="space-y-8">
@@ -80,18 +83,18 @@ export default function Contact() {
             </div>
 
             <div className="lg:w-2/3 p-12 md:p-16">
-              <h2 className="text-3xl font-bold text-slate-900 mb-8">Xabar Yo'llang</h2>
+              <h2 className="text-3xl font-bold text-slate-900 mb-8">{t('contact.form.title')}</h2>
               <form className="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <div className="space-y-2">
-                  <label className="text-sm font-bold text-slate-500 ml-1 italic">To'liq ismingiz</label>
+                  <label className="text-sm font-bold text-slate-500 ml-1 italic">{t('contact.form.name')}</label>
                   <input
                     type="text"
-                    placeholder="Ism va familiya"
+                    placeholder={t('contact.form.name')}
                     className="w-full bg-slate-50 border-2 border-slate-100 rounded-2xl px-6 py-4 focus:outline-none focus:border-blue-500 focus:bg-white transition-all"
                   />
                 </div>
                 <div className="space-y-2">
-                  <label className="text-sm font-bold text-slate-500 ml-1 italic">Email manzilingiz</label>
+                  <label className="text-sm font-bold text-slate-500 ml-1 italic">{t('contact.form.email')}</label>
                   <input
                     type="email"
                     placeholder="example@mail.com"
@@ -99,19 +102,19 @@ export default function Contact() {
                   />
                 </div>
                 <div className="md:col-span-2 space-y-2">
-                  <label className="text-sm font-bold text-slate-500 ml-1 italic">Mavzu</label>
+                  <label className="text-sm font-bold text-slate-500 ml-1 italic">{t('contact.form.subject')}</label>
                   <select className="w-full bg-slate-50 border-2 border-slate-100 rounded-2xl px-6 py-4 focus:outline-none focus:border-blue-500 focus:bg-white transition-all appearance-none cursor-pointer">
-                    <option>Xizmatlar haqida savol</option>
-                    <option>Narxlar tahlili</option>
-                    <option>Texnik yordam</option>
-                    <option>Hamkorlik</option>
+                    <option>{t('contact.form.options.service')}</option>
+                    <option>{t('contact.form.options.pricing')}</option>
+                    <option>{t('contact.form.options.support')}</option>
+                    <option>{t('contact.form.options.partnership')}</option>
                   </select>
                 </div>
                 <div className="md:col-span-2 space-y-2">
-                  <label className="text-sm font-bold text-slate-500 ml-1 italic">Xabar matni</label>
+                  <label className="text-sm font-bold text-slate-500 ml-1 italic">{t('contact.form.message')}</label>
                   <textarea
                     rows="5"
-                    placeholder="Qanday yordam bera olamiz?"
+                    placeholder={t('contact.form.message')}
                     className="w-full bg-slate-50 border-2 border-slate-100 rounded-2xl px-6 py-4 focus:outline-none focus:border-blue-500 focus:bg-white transition-all resize-none"
                   ></textarea>
                 </div>
@@ -120,7 +123,7 @@ export default function Contact() {
                     type="submit"
                     className="w-full sm:w-auto bg-blue-600 hover:bg-blue-700 text-white px-12 py-5 rounded-2xl font-black text-lg shadow-xl shadow-blue-200 hover:-translate-y-1 transition-all flex items-center justify-center gap-3"
                   >
-                    Yuborish <Send size={20} />
+                    {t('contact.form.submit')} <Send size={20} />
                   </button>
                 </div>
               </form>
@@ -136,8 +139,8 @@ export default function Contact() {
             <div className="bg-white p-4 rounded-full shadow-lg inline-block mb-4">
               <MapPin className="text-blue-600 animate-bounce" size={32} />
             </div>
-            <h3 className="text-xl font-bold text-slate-800">Google Maps Joylashuvi</h3>
-            <p className="text-slate-500 text-sm mt-2">Bu yerda sizning ofisingiz manzili ko'rinadi.</p>
+            <h3 className="text-xl font-bold text-slate-800">Google Maps Location</h3>
+            <p className="text-slate-500 text-sm mt-2">Your office address will appear here.</p>
           </div>
           <div className="absolute inset-0 opacity-20 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')]"></div>
         </div>

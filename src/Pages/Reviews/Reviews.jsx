@@ -1,7 +1,9 @@
+import { useTranslation } from 'react-i18next';
 import { useState } from "react";
 import { Star, User, MessageSquare, ShieldCheck, Quote } from "lucide-react";
 
 export default function Reviews() {
+    const { t } = useTranslation();
     const [reviews, setReviews] = useState([
         {
             name: "John Doe",
@@ -25,7 +27,7 @@ export default function Reviews() {
         e.preventDefault();
         if (!form.name || !form.message) return;
 
-        const newReview = { ...form, date: "Hozirgina" };
+        const newReview = { ...form, date: t('common.now') };
         setReviews([newReview, ...reviews]);
         setForm({ name: "", job: "", message: "", rating: 5 });
     };
@@ -36,13 +38,13 @@ export default function Reviews() {
 
                 <div className="text-center mb-16 space-y-4">
                     <div className="inline-flex items-center gap-2 bg-sky-100 text-sky-600 px-4 py-1.5 rounded-full text-sm font-bold tracking-widest uppercase">
-                        <Star size={16} fill="currentColor" /> Mijozlarimiz fikri
+                        <Star size={16} fill="currentColor" /> {t('reviews.badge')}
                     </div>
                     <h2 className="text-4xl md:text-5xl font-black text-slate-900">
-                        Bizga bo'lgan <span className="text-sky-500 italic">Ishonch</span>
+                        {t('reviews.title')}
                     </h2>
                     <p className="text-slate-500 max-w-2xl mx-auto text-lg leading-relaxed">
-                        Dunyo bo'ylab yuzlab tibbiy markazlar o'z moliya tizimini bizga ishonishgan. Ularning tajribasi bilan tanishing.
+                        {t('reviews.subtitle')}
                     </p>
                 </div>
 
@@ -92,16 +94,16 @@ export default function Reviews() {
                     <div className="sticky top-10">
                         <div className="bg-white p-10 rounded-[2.5rem] shadow-2xl shadow-slate-200 border border-slate-100">
                             <div className="mb-8">
-                                <h3 className="text-2xl font-black text-slate-900 mb-2">Fikringizni qoldiring</h3>
-                                <p className="text-sm text-slate-400">Sizning fikringiz biz uchun juda muhim.</p>
+                                <h3 className="text-2xl font-black text-slate-900 mb-2">{t('reviews.form.title')}</h3>
+                                <p className="text-sm text-slate-400">{t('reviews.form.subtitle')}</p>
                             </div>
 
                             <form onSubmit={handleSubmit} className="space-y-6">
                                 <div className="space-y-1">
-                                    <label className="text-xs font-bold text-slate-400 uppercase ml-1">To'liq ism</label>
+                                    <label className="text-xs font-bold text-slate-400 uppercase ml-1">{t('reviews.form.name')}</label>
                                     <input
                                         type="text"
-                                        placeholder="Ismingizni kiriting"
+                                        placeholder={t('reviews.form.name')}
                                         className="w-full bg-slate-50 border-2 border-slate-50 rounded-2xl px-5 py-4 focus:bg-white focus:border-sky-500 outline-none transition-all"
                                         value={form.name}
                                         onChange={(e) => setForm({ ...form, name: e.target.value })}
@@ -109,10 +111,10 @@ export default function Reviews() {
                                 </div>
 
                                 <div className="space-y-1">
-                                    <label className="text-xs font-bold text-slate-400 uppercase ml-1">Lavozimingiz</label>
+                                    <label className="text-xs font-bold text-slate-400 uppercase ml-1">{t('reviews.form.job')}</label>
                                     <input
                                         type="text"
-                                        placeholder="Masalan: Shifoxona mudiri"
+                                        placeholder={t('reviews.form.job')}
                                         className="w-full bg-slate-50 border-2 border-slate-50 rounded-2xl px-5 py-4 focus:bg-white focus:border-sky-500 outline-none transition-all"
                                         value={form.job}
                                         onChange={(e) => setForm({ ...form, job: e.target.value })}
@@ -120,7 +122,7 @@ export default function Reviews() {
                                 </div>
 
                                 <div className="space-y-1">
-                                    <label className="text-xs font-bold text-slate-400 uppercase ml-1">Reyting (1-5)</label>
+                                    <label className="text-xs font-bold text-slate-400 uppercase ml-1">{t('reviews.form.rating')}</label>
                                     <div className="flex gap-2">
                                         {[1, 2, 3, 4, 5].map(star => (
                                             <button
@@ -136,10 +138,10 @@ export default function Reviews() {
                                 </div>
 
                                 <div className="space-y-1">
-                                    <label className="text-xs font-bold text-slate-400 uppercase ml-1">Mulohaza</label>
+                                    <label className="text-xs font-bold text-slate-400 uppercase ml-1">{t('reviews.form.message')}</label>
                                     <textarea
                                         rows="4"
-                                        placeholder="Xizmat haqida nima deya olasiz?"
+                                        placeholder={t('reviews.form.message')}
                                         className="w-full bg-slate-50 border-2 border-slate-50 rounded-2xl px-5 py-4 focus:bg-white focus:border-sky-500 outline-none transition-all resize-none"
                                         value={form.message}
                                         onChange={(e) => setForm({ ...form, message: e.target.value })}
@@ -150,7 +152,7 @@ export default function Reviews() {
                                     type="submit"
                                     className="w-full bg-slate-900 hover:bg-sky-600 text-white py-5 rounded-2xl font-black text-lg transition-all shadow-xl shadow-slate-200 flex items-center justify-center gap-3 active:scale-95"
                                 >
-                                    Yuborish <MessageSquare size={20} />
+                                    {t('reviews.form.submit')} <MessageSquare size={20} />
                                 </button>
                             </form>
                         </div>

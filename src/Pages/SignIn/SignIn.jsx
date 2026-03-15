@@ -1,8 +1,10 @@
+import { useTranslation } from 'react-i18next';
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Mail, Lock, Eye, EyeOff, ShieldCheck, ArrowRight, HeartPulse } from 'lucide-react';
 
-const LoginForm = () => {
+const SignIn = () => {
+  const { t } = useTranslation();
   const navigate = useNavigate();
   const [formData, setFormData] = useState({ email: '', password: '' });
   const [showPassword, setShowPassword] = useState(false);
@@ -22,15 +24,14 @@ const LoginForm = () => {
       const savedUser = JSON.parse(localStorage.getItem("user"));
 
       if (!savedUser) {
-        setStatus({ message: "Akkount topilmadi. Iltimos, ro'yxatdan o'ting!", type: "error" });
+        setStatus({ message: t('signIn.errors.notFound'), type: "error" });
       } else if (
         formData.email === savedUser.email &&
         formData.password === savedUser.password
       ) {
-        setStatus({ message: "Xush kelibsiz! Tizimga kirildi.", type: "success" });
-
+        setStatus({ message: t('signIn.errors.welcome'), type: "success" });
       } else {
-        setStatus({ message: "Email yoki parol noto'g'ri!", type: "error" });
+        setStatus({ message: t('signIn.errors.invalid'), type: "error" });
       }
       setIsLoading(false);
     }, 1000);
@@ -49,16 +50,16 @@ const LoginForm = () => {
             <HeartPulse className="text-white" size={32} />
           </div>
           <h2 className="text-3xl font-black text-slate-900 tracking-tight">
-            Vcare <span className="text-blue-600">Portal</span>
+            Vcare <span className="text-blue-600">{t('signIn.title')}</span>
           </h2>
-          <p className="text-slate-500 mt-2 font-medium">Boshqaruv paneliga xavfsiz kirish</p>
+          <p className="text-slate-500 mt-2 font-medium">{t('signIn.subtitle')}</p>
         </div>
 
         <div className="bg-white rounded-[2rem] shadow-2xl shadow-slate-200/60 p-8 md:p-10 border border-slate-100 relative">
           <form onSubmit={handleSubmit} className="space-y-5">
 
             <div className="space-y-1.5">
-              <label className="text-xs font-bold text-slate-400 uppercase ml-1 tracking-wider">Email Manzil</label>
+              <label className="text-xs font-bold text-slate-400 uppercase ml-1 tracking-wider">{t('signIn.email')}</label>
               <div className="relative group">
                 <div className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-blue-500 transition-colors">
                   <Mail size={20} />
@@ -77,8 +78,8 @@ const LoginForm = () => {
 
             <div className="space-y-1.5">
               <div className="flex justify-between items-center px-1">
-                <label className="text-xs font-bold text-slate-400 uppercase tracking-wider">Parol</label>
-                <Link className="text-xs font-bold text-blue-600 hover:underline">Unutdingizmi?</Link>
+                <label className="text-xs font-bold text-slate-400 uppercase tracking-wider">{t('signIn.password')}</label>
+                <Link className="text-xs font-bold text-blue-600 hover:underline">{t('signIn.forgot')}</Link>
               </div>
               <div className="relative group">
                 <div className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-blue-500 transition-colors">
@@ -120,7 +121,7 @@ const LoginForm = () => {
                 <div className="w-6 h-6 border-4 border-white/30 border-t-white rounded-full animate-spin"></div>
               ) : (
                 <>
-                  Tizimga kirish <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
+                  {t('signIn.submit')} <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
                 </>
               )}
             </button>
@@ -128,9 +129,9 @@ const LoginForm = () => {
 
           <div className="mt-10 pt-8 border-t border-slate-50 text-center">
             <p className="text-slate-500 font-medium">
-              Akkountingiz yo'qmi?{' '}
+              {t('signIn.noAccount')}{' '}
               <Link to={'/sign-up'} className="text-blue-600 font-black hover:text-blue-700 ml-1 transition-colors">
-                Ro'yxatdan o'ting
+                {t('signIn.signUp')}
               </Link>
             </p>
           </div>
@@ -138,11 +139,11 @@ const LoginForm = () => {
 
         <div className="mt-8 flex items-center justify-center gap-6 text-slate-400">
           <div className="flex items-center gap-1.5 text-xs font-bold uppercase tracking-tighter">
-            <ShieldCheck size={14} /> 256-bit SSL Secure
+            <ShieldCheck size={14} /> {t('signIn.secure')}
           </div>
           <div className="w-1.5 h-1.5 bg-slate-200 rounded-full"></div>
           <div className="text-xs font-bold uppercase tracking-tighter">
-            HIPAA Compliant
+            {t('signIn.hipaa')}
           </div>
         </div>
       </div>
@@ -150,4 +151,4 @@ const LoginForm = () => {
   );
 };
 
-export default LoginForm;
+export default SignIn;

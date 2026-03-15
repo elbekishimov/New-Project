@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import React from 'react';
 import teamImage from '../../IMG/service-hero.png';
 import billingLaptop from '../../IMG/service-hero.png';
@@ -14,46 +15,46 @@ import {
 } from 'lucide-react';
 
 export default function Blog() {
+  const { t } = useTranslation();
 
   const features = [
     {
-      title: "Sertifikatlangan Koderlar",
+      title: t('blog.features.certifiedCoders.title'),
       icon: <CheckCircle className="text-sky-500" size={24} />,
-      text: "Bizning AAPC sertifikatiga ega koderlarimiz va malakali billing mutaxassislarimiz aniq xizmat ko'rsatadi. Biz jamoangizga daromadni oshirish sirlarini o'rgatamiz."
+      text: t('blog.features.certifiedCoders.desc')
     },
     {
-      title: "Katta Tajriba",
+      title: t('blog.features.experience.title'),
       icon: <Clock className="text-sky-500" size={24} />,
-      text: "15 yillik tajribamiz bilan biz sug'urta kompaniyalari va mijozlar o'rtasida mustahkam aloqa o'rnatamiz va xizmat sifatini kafolatlaymiz."
+      text: t('blog.features.experience.desc')
     },
     {
-      title: "Shaxsiy Yondashuv",
+      title: t('blog.features.personalApproach.title'),
       icon: <Settings className="text-sky-500" size={24} />,
-      text: "Biz har bir mijozning ehtiyojlaridan kelib chiqib, murakkab billing jarayonlarini soddalashtiramiz va to'lovlarni o'z vaqtida undiramiz."
+      text: t('blog.features.personalApproach.desc')
     },
     {
-      title: "Doimiy Yangilanish",
+      title: t('blog.features.constantUpdate.title'),
       icon: <RefreshCcw className="text-sky-500" size={24} />,
-      text: "Biz sohadagi barcha yangi qonun va qoidalardan doimo xabardormiz. Xizmatlarimizni mijozlarimizning noyob talablariga moslashtiramiz."
+      text: t('blog.features.constantUpdate.desc')
     }
   ];
 
   return (
     <div className="bg-white font-sans text-slate-600 overflow-hidden">
 
-      {/* 1. QAHRAMON QISMI (HERO SECTION) */}
       <section className="max-w-7xl mx-auto px-4 md:px-12 py-20">
         <div className="flex flex-col lg:flex-row items-center gap-16">
           <div className="flex-1 space-y-8 animate-in fade-in slide-in-from-left duration-700">
             <div className="inline-block px-4 py-1.5 bg-sky-50 text-sky-600 rounded-full text-sm font-bold tracking-wide uppercase">
-              Kompaniyamiz Haqida
+              {t('blog.hero.badge')}
             </div>
             <h2 className="text-4xl md:text-5xl font-black text-slate-900 leading-tight">
-              Biz Haqimizda Bilishga <br />
-              <span className="text-sky-500 underline decoration-sky-200 underline-offset-8">Qiziqasizmi?</span>
+              {t('blog.hero.title1')} <br />
+              <span className="text-sky-500 underline decoration-sky-200 underline-offset-8">{t('blog.hero.title2')}</span>
             </h2>
             <p className="text-lg leading-relaxed text-slate-500">
-              Bemor tashrifidan boshlab to'lov qabul qilinguncha, bizning professional RCM jamoamiz sizning o'sishingizga yordam beradi. Biz daromad aylanishini boshqarishdagi (RCM) muammolarni aniqlash va hal qilishga ixtisoslashganmiz.
+              {t('blog.hero.description')}
             </p>
             <div className="flex flex-wrap gap-4 pt-4">
               <Link
@@ -63,11 +64,11 @@ export default function Blog() {
                 <span className="bg-white/20 p-2 rounded-lg group-hover:rotate-12 transition-transform">
                   <PhoneCall size={20} />
                 </span>
-                Bizga Qo'ng'iroq Qiling
+                {t('blog.hero.callBtn')}
               </Link>
               <Link to={'/leave-mesage'} className="bg-slate-900 hover:bg-slate-800 text-white px-8 py-4 rounded-2xl font-bold transition flex items-center gap-2 group">
                 <MessageSquare size={20} className="group-hover:-translate-y-1 transition-transform" />
-                Xabar Qoldiring
+                {t('blog.hero.messageBtn')}
               </Link>
             </div>
           </div>
@@ -79,7 +80,7 @@ export default function Blog() {
                 <Users size={24} />
               </div>
               <div>
-                <p className="text-xs font-bold text-slate-400 uppercase tracking-tighter">Mijozlar Mamnuniyati</p>
+                <p className="text-xs font-bold text-slate-400 uppercase tracking-tighter">{t('blog.hero.clientSatisfaction')}</p>
                 <p className="text-xl font-black text-slate-800">99.9%</p>
               </div>
             </div>
@@ -87,21 +88,19 @@ export default function Blog() {
         </div>
       </section>
 
-      {/* 2. AVZALLIKLARIMIZ (FEATURES GRID) */}
       <section className="bg-slate-50 py-24">
         <div className="max-w-7xl mx-auto px-4 md:px-12">
           <div className="flex flex-col lg:flex-row gap-16 items-start">
             <div className="flex-1 space-y-8 lg:sticky lg:top-24">
               <h3 className="text-3xl font-black text-slate-900 leading-snug">
-                Nima uchun shifokorlar <br />
-                <span className="text-sky-500">Vcare Billingga Ishonishadi?</span>
+                {t('blog.features.title')}
               </h3>
               <div className="space-y-6 text-base leading-relaxed text-slate-500 border-l-4 border-sky-200 pl-6">
                 <p>
-                  <span className="font-bold text-slate-800">Vcare Medical Billing</span> jamoasi yuqori darajadagi tibbiy billing va kodlash xizmatlarini taqdim etishga sodiqdir.
+                  {t('blog.features.subtitle1')}
                 </p>
                 <p>
-                  Mijozlar bilan mustahkam aloqa o'rnatish biz uchun juda muhim. Bizning bilimli mutaxassislarimiz har bir so'rovingizga tezkor javob berib, sizga alohida e'tibor qaratadi.
+                  {t('blog.features.subtitle2')}
                 </p>
               </div>
             </div>
@@ -123,7 +122,6 @@ export default function Blog() {
         </div>
       </section>
 
-      {/* 3. MAQSAD VA ANIQLIK (HIGHLIGHT BOX) */}
       <section className="py-24 px-4 md:px-12">
         <div className="max-w-7xl mx-auto border-2 border-sky-100 rounded-[3rem] bg-gradient-to-br from-white to-sky-50/50 p-8 md:p-16 relative overflow-hidden">
           <div className="absolute top-0 right-0 w-64 h-64 bg-sky-200/20 rounded-full blur-3xl -z-10"></div>
@@ -131,14 +129,17 @@ export default function Blog() {
           <div className="flex flex-col md:flex-row items-center justify-between gap-12">
             <div className="flex-1 space-y-6">
               <h2 className="text-3xl md:text-4xl font-black text-slate-900">
-                Tibbiy Billingda <br />
-                <span className="text-sky-500">Yuksak Aniqlik</span>
+                {t('blog.highlight.title')}
               </h2>
               <p className="text-slate-500 text-lg leading-relaxed">
-                25 yildan ortiq tajribaga ega bo'lgan billing va kodlash mutaxassislarimiz bilan moliyaviy muvaffaqiyatga erishing. Kichik xatolar ham to'lov rad etilishiga va kechikishlarga sabab bo'lishi mumkin.
+                {t('blog.highlight.desc')}
               </p>
               <ul className="space-y-4">
-                {['Aniq Da\'volar (Claims)', 'Tezkor To\'lov Undirish', 'Minimal Rad Javoblari'].map((tip) => (
+                {[
+                  t('blog.highlight.points.accurate'),
+                  t('blog.highlight.points.fast'),
+                  t('blog.highlight.points.minimal')
+                ].map((tip) => (
                   <li key={tip} className="flex items-center gap-3 font-bold text-slate-700">
                     <CheckCircle className="text-emerald-500" size={18} /> {tip}
                   </li>
@@ -153,20 +154,19 @@ export default function Blog() {
         </div>
       </section>
 
-      {/* 4. YAKUNIY CTA (FINAL CTA SECTION) */}
       <section className="max-w-7xl mx-auto px-4 md:px-12 py-24 text-center md:text-left">
         <div className="flex flex-col md:flex-row items-center gap-16 bg-slate-900 rounded-[3rem] p-10 md:p-20 text-white relative overflow-hidden">
           <div className="absolute bottom-0 right-0 w-64 h-64 bg-blue-500/10 rounded-full blur-3xl"></div>
 
           <div className="flex-1 space-y-8 z-10">
             <h2 className="text-4xl md:text-5xl font-black leading-tight text-white">
-              Daromadingizni <span className="text-sky-400">Oshirishga Tayyormisiz?</span>
+              {t('blog.cta.title')}
             </h2>
             <p className="leading-relaxed text-xl text-slate-300">
-              Bizni o'z jamoangizning bir qismi deb tasavvur qiling. Bizning maqsadimiz — vaqtingizni tejash, daromadni ko'paytirish va sizga bemorlar parvarishiga e'tibor qaratish imkonini berishdir.
+              {t('blog.cta.desc')}
             </p>
             <Link to={'/contact-us'} className="inline-flex bg-sky-500 hover:bg-sky-600 text-white px-12 py-4 rounded-2xl font-black text-lg transition-all shadow-xl shadow-sky-900/20 active:scale-95">
-              Bugun Biz Bilan Bog'laning
+              {t('blog.cta.button')}
             </Link>
           </div>
 

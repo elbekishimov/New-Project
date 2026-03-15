@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import {
@@ -11,7 +12,8 @@ import {
   ShieldCheck
 } from 'lucide-react';
 
-const SignUpForm = () => {
+const SignUp = () => {
+  const { t } = useTranslation();
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
     fullName: '',
@@ -28,13 +30,12 @@ const SignUpForm = () => {
     setFormData(prev => ({ ...prev, [name]: value }));
   };
 
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsLoading(true);
 
     if (formData.password !== formData.confirmPassword) {
-      setStatus({ message: "Parollar bir-biriga mos kelmadi!", type: "error" });
+      setStatus({ message: t('signUp.errors.passwordMismatch'), type: "error" });
       setIsLoading(false);
       return;
     }
@@ -63,14 +64,14 @@ const SignUpForm = () => {
 
       if (response.ok) {
         localStorage.setItem("user", JSON.stringify(formData));
-        setStatus({ message: "Ma'lumotlar botga yuborildi va saqlandi!", type: "success" });
+        setStatus({ message: t('signUp.errors.success'), type: "success" });
 
         setFormData({ fullName: '', email: '', password: '', confirmPassword: '' });
       } else {
         throw new Error("Telegramga yuborishda xatolik");
       }
     } catch (error) {
-      setStatus({ message: "Xatolik yuz berdi. Qayta urinib ko'ring.", type: "error" });
+      setStatus({ message: t('signUp.errors.error'), type: "error" });
     } finally {
       setIsLoading(false);
     }
@@ -90,15 +91,15 @@ const SignUpForm = () => {
             </div>
             <span className="text-2xl font-black text-slate-900 tracking-tight">Vcare<span className="text-blue-600">Billing</span></span>
           </Link>
-          <h2 className="text-3xl font-black text-slate-900">Yangi hisob yaratish</h2>
-          <p className="text-slate-500 mt-2 font-medium">Professional billing xizmatlaridan foydalanishni boshlang</p>
+          <h2 className="text-3xl font-black text-slate-900">{t('signUp.title')}</h2>
+          <p className="text-slate-500 mt-2 font-medium">{t('signUp.subtitle')}</p>
         </div>
 
         <div className="bg-white rounded-[2.5rem] shadow-2xl shadow-slate-200/60 p-8 md:p-12 border border-slate-100">
           <form onSubmit={handleSubmit} className="space-y-6">
 
             <div className="space-y-1.5">
-              <label className="text-xs font-bold text-slate-400 uppercase ml-1 tracking-widest">To'liq ism-familiya</label>
+              <label className="text-xs font-bold text-slate-400 uppercase ml-1 tracking-widest">{t('signUp.fullName')}</label>
               <div className="relative group">
                 <div className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-blue-500 transition-colors">
                   <User size={20} />
@@ -116,7 +117,7 @@ const SignUpForm = () => {
             </div>
 
             <div className="space-y-1.5">
-              <label className="text-xs font-bold text-slate-400 uppercase ml-1 tracking-widest">Elektron pochta</label>
+              <label className="text-xs font-bold text-slate-400 uppercase ml-1 tracking-widest">{t('signUp.email')}</label>
               <div className="relative group">
                 <div className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-blue-500 transition-colors">
                   <Mail size={20} />
@@ -135,7 +136,7 @@ const SignUpForm = () => {
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div className="space-y-1.5">
-                <label className="text-xs font-bold text-slate-400 uppercase ml-1 tracking-widest">Parol</label>
+                <label className="text-xs font-bold text-slate-400 uppercase ml-1 tracking-widest">{t('signUp.password')}</label>
                 <div className="relative group">
                   <div className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-blue-500 transition-colors">
                     <Lock size={20} />
@@ -152,7 +153,7 @@ const SignUpForm = () => {
                 </div>
               </div>
               <div className="space-y-1.5">
-                <label className="text-xs font-bold text-slate-400 uppercase ml-1 tracking-widest">Tasdiqlash</label>
+                <label className="text-xs font-bold text-slate-400 uppercase ml-1 tracking-widest">{t('signUp.confirm')}</label>
                 <div className="relative group">
                   <div className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-blue-500 transition-colors">
                     <ShieldCheck size={20} />
@@ -187,7 +188,7 @@ const SignUpForm = () => {
                 <div className="w-6 h-6 border-4 border-white/30 border-t-white rounded-full animate-spin"></div>
               ) : (
                 <>
-                  Hisob yaratish <UserPlus size={22} className="group-hover:translate-x-1 transition-transform" />
+                  {t('signUp.submit')} <UserPlus size={22} className="group-hover:translate-x-1 transition-transform" />
                 </>
               )}
             </button>
@@ -195,9 +196,9 @@ const SignUpForm = () => {
 
           <div className="mt-10 pt-8 border-t border-slate-50 text-center">
             <p className="text-slate-500 font-medium">
-              Profilingiz bormi?{' '}
+              {t('signUp.hasAccount')}{' '}
               <Link to={'/sign-in'} className="text-blue-600 font-black hover:underline ml-1">
-                Kirish
+                {t('signUp.signIn')}
               </Link>
             </p>
           </div>
@@ -206,11 +207,11 @@ const SignUpForm = () => {
         <div className="mt-8 flex justify-center items-center gap-4">
           <div className="flex items-center gap-1.5 bg-white px-3 py-1.5 rounded-full shadow-sm border border-slate-100">
             <ShieldCheck size={14} className="text-green-500" />
-            <span className="text-[10px] font-bold text-slate-500 uppercase tracking-tighter">End-to-end Encrypted</span>
+            <span className="text-[10px] font-bold text-slate-500 uppercase tracking-tighter">{t('signUp.encrypted')}</span>
           </div>
           <div className="flex items-center gap-1.5 bg-white px-3 py-1.5 rounded-full shadow-sm border border-slate-100">
             <CheckCircle2 size={14} className="text-blue-500" />
-            <span className="text-[10px] font-bold text-slate-500 uppercase tracking-tighter">HIPAA Compliant</span>
+            <span className="text-[10px] font-bold text-slate-500 uppercase tracking-tighter">{t('signUp.hipaa')}</span>
           </div>
         </div>
       </div>
@@ -218,4 +219,4 @@ const SignUpForm = () => {
   );
 };
 
-export default SignUpForm;
+export default SignUp;

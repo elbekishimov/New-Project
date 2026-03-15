@@ -1,29 +1,31 @@
+import { useTranslation } from 'react-i18next';
 import React from "react";
 import { Phone, Clock, MapPin, ShieldCheck, ArrowRight, Calendar } from "lucide-react";
 
 export default function CallUs() {
+  const { t } = useTranslation();
   const PHONE_NUMBER = "+998901234567";
 
   const contactCards = [
     {
-      title: "Ish vaqti",
-      desc: "Dushanba – Juma",
-      detail: "09:00 – 18:00",
+      title: t('callUs.cards.hours.title'),
+      desc: t('callUs.cards.hours.desc'),
+      detail: t('callUs.cards.hours.detail'),
       icon: <Clock className="text-sky-500" size={28} />,
       bg: "bg-sky-50",
       border: "border-sky-100"
     },
     {
-      title: "To'g'ridan-to'g'ri aloqa",
-      desc: "Mutaxassis bilan bog'lanish",
+      title: t('callUs.cards.direct.title'),
+      desc: t('callUs.cards.direct.desc'),
       detail: PHONE_NUMBER,
       icon: <Phone className="text-emerald-500" size={28} />,
       bg: "bg-emerald-50",
       border: "border-emerald-100"
     },
     {
-      title: "Ofis manzili",
-      desc: "Bosh ofisimiz",
+      title: t('callUs.cards.office.title'),
+      desc: t('callUs.cards.office.desc'),
       detail: "123 Healthcare Ave, NY",
       icon: <MapPin className="text-orange-500" size={28} />,
       bg: "bg-orange-50",
@@ -42,15 +44,13 @@ export default function CallUs() {
 
         <div className="max-w-4xl mx-auto relative z-10 space-y-8 animate-in fade-in zoom-in duration-700">
           <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-md rounded-full text-sky-400 text-sm font-bold tracking-widest uppercase border border-white/10">
-            <ShieldCheck size={16} /> Secure Billing Solutions
+            <ShieldCheck size={16} /> {t('callUs.hero.badge')}
           </div>
           <h1 className="text-4xl md:text-6xl font-black text-white leading-tight">
-            Billing bo'yicha <br />
-            <span className="text-sky-400">Mutaxassis maslahati</span>
+            {t('callUs.hero.title')}
           </h1>
           <p className="text-slate-300 text-lg md:text-xl max-w-2xl mx-auto leading-relaxed">
-            Bizning sertifikatlangan mutaxassislarimiz yordamga tayyor.
-            Daromad aylanishini optimallashtirish bo'yicha hoziroq bepul maslahat oling.
+            {t('callUs.hero.desc')}
           </p>
 
           <div className="pt-4">
@@ -91,14 +91,13 @@ export default function CallUs() {
         <div className="bg-slate-50 rounded-[3rem] p-8 md:p-16 flex flex-col lg:flex-row items-center gap-12 border border-slate-100">
           <div className="flex-1 space-y-6">
             <h2 className="text-3xl md:text-4xl font-black text-slate-900 leading-tight">
-              Nega aynan bizga <br />
-              <span className="text-emerald-600">qo'ng'iroq qilishingiz kerak?</span>
+              {t('callUs.whyCall.title')}
             </h2>
             <div className="space-y-4">
               {[
-                "Kichik xatolarni tuzatish orqali daromadni 20% gacha oshirish",
-                "Sug'urta kompaniyalari bilan muammolarni hal qilish",
-                "AAPC sertifikatiga ega mutaxassislar bilan ishlash"
+                t('callUs.whyCall.points.revenue'),
+                t('callUs.whyCall.points.insurance'),
+                t('callUs.whyCall.points.experts')
               ].map((text, i) => (
                 <div key={i} className="flex items-center gap-3 font-semibold text-slate-700">
                   <div className="bg-emerald-100 p-1 rounded-full text-emerald-600">
@@ -116,15 +115,15 @@ export default function CallUs() {
                 <Calendar size={24} />
               </div>
               <div>
-                <h4 className="font-bold text-slate-900 text-lg">Uchrashuv belgilash</h4>
-                <p className="text-sm text-slate-500">Video chat orqali batafsil tahlil</p>
+                <h4 className="font-bold text-slate-900 text-lg">{t('callUs.whyCall.appointment.title')}</h4>
+                <p className="text-sm text-slate-500">{t('callUs.whyCall.appointment.desc')}</p>
               </div>
             </div>
             <p className="text-slate-500 leading-relaxed font-medium">
-              Agar telefon orqali gaplashishga vaqtingiz bo'lmasa, bizga xabar qoldiring. Mutaxassislarimiz sizga qulay vaqtda qayta bog'lanishadi.
+              {t('callUs.whyCall.appointment.message')}
             </p>
             <button className="w-full bg-slate-900 text-white py-4 rounded-xl font-bold hover:bg-sky-600 transition-colors">
-              Xabar qoldirish
+              {t('callUs.whyCall.appointment.button')}
             </button>
           </div>
         </div>
@@ -132,15 +131,15 @@ export default function CallUs() {
 
       <section className="bg-emerald-900 py-16 px-4 md:px-12 text-white text-center">
         <div className="max-w-3xl mx-auto space-y-6">
-          <h2 className="text-3xl font-black">Moliyaviy muvaffaqiyat bir qo'ng'iroq masofasida</h2>
+          <h2 className="text-3xl font-black">{t('callUs.footer.title')}</h2>
           <p className="text-emerald-100/80 font-medium">
-            To'lovlarning kechikishiga yo'l qo'ymang. Biz bilan billing tizimingizni aniq va tezkor qiling.
+            {t('callUs.footer.desc')}
           </p>
           <a
             href={`tel:${PHONE_NUMBER}`}
             className="inline-block bg-emerald-400 hover:bg-white text-emerald-950 px-12 py-4 rounded-2xl font-black text-lg transition-all shadow-xl active:scale-95"
           >
-            Hoziroq bog'laning
+            {t('callUs.footer.button')}
           </a>
         </div>
       </section>

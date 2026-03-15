@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import React, { useState } from "react";
 import {
   Mail,
@@ -13,6 +14,7 @@ import {
 } from "lucide-react";
 
 export default function ContactUs() {
+  const { t } = useTranslation();
   const [form, setForm] = useState({
     name: "",
     email: "",
@@ -31,7 +33,6 @@ export default function ContactUs() {
     e.preventDefault();
     setIsLoading(true);
 
-    // Telegram Bot Ma'lumotlari
     const botToken = "YOUR_BOT_TOKEN";
     const chatId = "YOUR_CHAT_ID";
 
@@ -56,16 +57,15 @@ export default function ContactUs() {
       });
 
       if (response.ok) {
-        setStatus({ message: "Xabaringiz muvaffaqiyatli yuborildi!", type: "success" });
+        setStatus({ message: t('common.sendSuccess'), type: "success" });
         setForm({ name: "", email: "", subject: "", message: "" });
       } else {
         throw new Error();
       }
     } catch (error) {
-      setStatus({ message: "Xatolik yuz berdi. Iltimos, qayta urinib ko'ring.", type: "error" });
+      setStatus({ message: t('common.error'), type: "error" });
     } finally {
       setIsLoading(false);
-      // 5 soniyadan keyin xabarni o'chirish
       setTimeout(() => setStatus({ message: '', type: '' }), 5000);
     }
   };
@@ -73,28 +73,25 @@ export default function ContactUs() {
   return (
     <div className="bg-white min-h-screen text-slate-600 font-sans">
 
-      {/* 1. HERO SECTION */}
       <section className="bg-slate-900 py-24 px-4 md:px-12 text-center relative overflow-hidden">
         <div className="absolute top-0 right-0 w-64 h-64 bg-blue-500/10 rounded-full blur-[100px]"></div>
         <div className="relative z-10">
           <h1 className="text-4xl md:text-6xl font-black text-white mb-6">
-            Biz bilan <span className="text-sky-400">bog'laning</span>
+            {t('contactUs.hero.title')}
           </h1>
           <p className="max-w-2xl mx-auto text-slate-300 text-lg md:text-xl font-medium">
-            Savollaringiz bormi? Bizning jamoamiz billing jarayonlarini optimallashtirishda sizga yordam berishga tayyor.
+            {t('contactUs.hero.desc')}
           </p>
         </div>
       </section>
 
-      {/* 2. MAIN CONTENT */}
       <section className="max-w-7xl mx-auto px-4 md:px-12 py-24">
         <div className="grid lg:grid-cols-2 gap-20 items-start">
 
-          {/* LEFT SIDE: CONTACT INFO */}
           <div className="space-y-12">
             <div>
               <h2 className="text-3xl font-black text-slate-900 mb-8 underline decoration-sky-400 decoration-4 underline-offset-8">
-                Ma'lumotlarimiz
+                {t('contactUs.info.title')}
               </h2>
 
               <div className="grid gap-8">
@@ -103,7 +100,7 @@ export default function ContactUs() {
                     <MapPin size={24} />
                   </div>
                   <div>
-                    <h4 className="font-bold text-slate-900 text-lg">Manzil</h4>
+                    <h4 className="font-bold text-slate-900 text-lg">{t('contactUs.info.address.title')}</h4>
                     <p className="text-slate-500">123 Healthcare Avenue, Suite 400<br />New York, NY 10001</p>
                   </div>
                 </div>
@@ -113,7 +110,7 @@ export default function ContactUs() {
                     <Phone size={24} />
                   </div>
                   <div>
-                    <h4 className="font-bold text-slate-900 text-lg">Telefon</h4>
+                    <h4 className="font-bold text-slate-900 text-lg">{t('contactUs.info.phone.title')}</h4>
                     <p className="text-slate-500">+1 (555) 123-4567</p>
                   </div>
                 </div>
@@ -123,7 +120,7 @@ export default function ContactUs() {
                     <Mail size={24} />
                   </div>
                   <div>
-                    <h4 className="font-bold text-slate-900 text-lg">Email</h4>
+                    <h4 className="font-bold text-slate-900 text-lg">{t('contactUs.info.email.title')}</h4>
                     <p className="text-slate-500">info@vcarebilling.com</p>
                   </div>
                 </div>
@@ -133,16 +130,15 @@ export default function ContactUs() {
                     <Clock size={24} />
                   </div>
                   <div>
-                    <h4 className="font-bold text-slate-900 text-lg">Ish vaqti</h4>
-                    <p className="text-slate-500">Dushanba – Juma: 09:00 – 18:00<br />Shanba – Yakshanba: Dam olish kuni</p>
+                    <h4 className="font-bold text-slate-900 text-lg">{t('contactUs.info.hours.title')}</h4>
+                    <p className="text-slate-500">{t('contactUs.info.hours.weekdays')}<br />{t('contactUs.info.hours.weekend')}</p>
                   </div>
                 </div>
               </div>
             </div>
 
-            {/* Social Media */}
             <div className="pt-8 border-t border-slate-100">
-              <p className="font-bold text-slate-900 mb-4">Bizni kuzatib boring:</p>
+              <p className="font-bold text-slate-900 mb-4">{t('contactUs.social')}</p>
               <div className="flex gap-4">
                 {[Linkedin, Facebook, Twitter].map((Icon, i) => (
                   <a key={i} href="#" className="p-3 bg-slate-100 rounded-xl text-slate-600 hover:bg-sky-500 hover:text-white transition-all">
@@ -153,61 +149,60 @@ export default function ContactUs() {
             </div>
           </div>
 
-          {/* RIGHT SIDE: CONTACT FORM */}
           <div className="relative">
             <div className="absolute -inset-4 bg-sky-500/5 rounded-[3rem] -z-10 rotate-1"></div>
             <div className="bg-white p-8 md:p-12 rounded-[2.5rem] shadow-2xl shadow-slate-200 border border-slate-50">
-              <h3 className="text-2xl font-black text-slate-900 mb-6">Xabar yuboring</h3>
+              <h3 className="text-2xl font-black text-slate-900 mb-6">{t('contactUs.form.title')}</h3>
 
               <form onSubmit={handleSubmit} className="space-y-5">
                 <div className="space-y-1.5">
-                  <label className="text-xs font-bold text-slate-400 uppercase tracking-widest ml-1">To'liq ism</label>
+                  <label className="text-xs font-bold text-slate-400 uppercase tracking-widest ml-1">{t('contactUs.form.name')}</label>
                   <input
                     type="text"
                     name="name"
                     required
                     value={form.name}
                     onChange={handleChange}
-                    placeholder="Jonibek Toshpo'latov"
+                    placeholder={t('contactUs.form.placeholders.name')}
                     className="w-full p-4 bg-slate-50 border-2 border-slate-50 rounded-2xl focus:bg-white focus:border-sky-500 outline-none transition-all font-medium"
                   />
                 </div>
 
                 <div className="space-y-1.5">
-                  <label className="text-xs font-bold text-slate-400 uppercase tracking-widest ml-1">Email</label>
+                  <label className="text-xs font-bold text-slate-400 uppercase tracking-widest ml-1">{t('contactUs.form.email')}</label>
                   <input
                     type="email"
                     name="email"
                     required
                     value={form.email}
                     onChange={handleChange}
-                    placeholder="vcare@example.com"
+                    placeholder={t('contactUs.form.placeholders.email')}
                     className="w-full p-4 bg-slate-50 border-2 border-slate-50 rounded-2xl focus:bg-white focus:border-sky-500 outline-none transition-all font-medium"
                   />
                 </div>
 
                 <div className="space-y-1.5">
-                  <label className="text-xs font-bold text-slate-400 uppercase tracking-widest ml-1">Mavzu</label>
+                  <label className="text-xs font-bold text-slate-400 uppercase tracking-widest ml-1">{t('contactUs.form.subject')}</label>
                   <input
                     type="text"
                     name="subject"
                     required
                     value={form.subject}
                     onChange={handleChange}
-                    placeholder="Billing maslahati"
+                    placeholder={t('contactUs.form.placeholders.subject')}
                     className="w-full p-4 bg-slate-50 border-2 border-slate-50 rounded-2xl focus:bg-white focus:border-sky-500 outline-none transition-all font-medium"
                   />
                 </div>
 
                 <div className="space-y-1.5">
-                  <label className="text-xs font-bold text-slate-400 uppercase tracking-widest ml-1">Xabar</label>
+                  <label className="text-xs font-bold text-slate-400 uppercase tracking-widest ml-1">{t('contactUs.form.message')}</label>
                   <textarea
                     name="message"
                     required
                     rows="4"
                     value={form.message}
                     onChange={handleChange}
-                    placeholder="Xabaringizni yozing..."
+                    placeholder={t('contactUs.form.message')}
                     className="w-full p-4 bg-slate-50 border-2 border-slate-50 rounded-2xl focus:bg-white focus:border-sky-500 outline-none transition-all font-medium resize-none"
                   />
                 </div>
@@ -229,7 +224,7 @@ export default function ContactUs() {
                     <div className="w-6 h-6 border-4 border-white/30 border-t-white rounded-full animate-spin"></div>
                   ) : (
                     <>
-                      Yuborish <Send size={20} className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+                      {t('contactUs.form.submit')} <Send size={20} className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
                     </>
                   )}
                 </button>
@@ -239,7 +234,6 @@ export default function ContactUs() {
         </div>
       </section>
 
-      {/* 3. MAP (PLACEHOLDER) */}
       <section className="w-full h-96 bg-slate-100 grayscale hover:grayscale-0 transition-all duration-700">
         <iframe
           title="office map"

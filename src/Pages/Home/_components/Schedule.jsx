@@ -1,7 +1,9 @@
+import { useTranslation } from 'react-i18next';
 import { useState } from "react";
 import { Calendar, Phone, User, Settings, CheckCircle } from "lucide-react";
 
 export default function ScheduleAppointment() {
+  const { t } = useTranslation();
   const [formData, setFormData] = useState({
     name: "",
     phone: "",
@@ -19,7 +21,7 @@ export default function ScheduleAppointment() {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(formData);
-    alert("Uchrashuv muvaffaqiyatli belgilandi!");
+    alert(t('common.sendSuccess'));
   };
 
   return (
@@ -28,22 +30,21 @@ export default function ScheduleAppointment() {
 
         <div className="space-y-8">
           <div>
-            <span className="text-sky-600 font-bold tracking-widest uppercase text-sm">Maslahat Oling</span>
+            <span className="text-sky-600 font-bold tracking-widest uppercase text-sm">{t('schedule.badge')}</span>
             <h2 className="text-4xl md:text-5xl font-black text-slate-900 mt-2">
-              Mutaxassis bilan uchrashuv belgilang
+              {t('schedule.title')}
             </h2>
           </div>
 
           <p className="text-slate-600 text-lg leading-relaxed">
-            Kerakli sana va xizmat turini tanlash orqali tashrifingizni oson bron qiling.
-            Bizning billing mutaxassislarimiz qisqa vaqt ichida siz bilan bog'lanishadi.
+            {t('schedule.desc')}
           </p>
 
           <div className="space-y-4">
             {[
-              { text: "Professional Billing Mutaxassislari", icon: <User size={20} /> },
-              { text: "Zamonaviy RCM Tizimlari", icon: <Settings size={20} /> },
-              { text: "24/7 Onlayn Navbat", icon: <Calendar size={20} /> }
+              { text: t('schedule.features.professionals'), icon: <User size={20} /> },
+              { text: t('schedule.features.systems'), icon: <Settings size={20} /> },
+              { text: t('schedule.features.online'), icon: <Calendar size={20} /> }
             ].map((item, i) => (
               <div key={i} className="flex items-center gap-4 text-slate-700 font-semibold">
                 <div className="bg-sky-100 text-sky-600 p-2 rounded-lg">
@@ -62,11 +63,11 @@ export default function ScheduleAppointment() {
             className="relative bg-white p-10 rounded-3xl shadow-2xl shadow-slate-200 space-y-5 border border-slate-100"
           >
             <div className="space-y-2">
-              <label className="text-sm font-bold text-slate-500 ml-1">To'liq ismingiz</label>
+              <label className="text-sm font-bold text-slate-500 ml-1">{t('schedule.form.name')}</label>
               <input
                 type="text"
                 name="name"
-                placeholder="Masalan: Aziz Rahimov"
+                placeholder="Aziz Rahimov"
                 className="w-full border-2 border-slate-50 bg-slate-50 p-4 rounded-2xl focus:border-sky-500 focus:bg-white outline-none transition-all font-medium"
                 onChange={handleChange}
                 required
@@ -74,7 +75,7 @@ export default function ScheduleAppointment() {
             </div>
 
             <div className="space-y-2">
-              <label className="text-sm font-bold text-slate-500 ml-1">Telefon raqamingiz</label>
+              <label className="text-sm font-bold text-slate-500 ml-1">{t('schedule.form.phone')}</label>
               <input
                 type="tel"
                 name="phone"
@@ -86,7 +87,7 @@ export default function ScheduleAppointment() {
             </div>
 
             <div className="space-y-2">
-              <label className="text-sm font-bold text-slate-500 ml-1">Sana</label>
+              <label className="text-sm font-bold text-slate-500 ml-1">{t('schedule.form.date')}</label>
               <input
                 type="date"
                 name="date"
@@ -97,17 +98,17 @@ export default function ScheduleAppointment() {
             </div>
 
             <div className="space-y-2">
-              <label className="text-sm font-bold text-slate-500 ml-1">Xizmat turini tanlang</label>
+              <label className="text-sm font-bold text-slate-500 ml-1">{t('schedule.form.service')}</label>
               <select
                 name="service"
                 className="w-full border-2 border-slate-50 bg-slate-50 p-4 rounded-2xl focus:border-sky-500 focus:bg-white outline-none transition-all font-medium text-slate-500"
                 onChange={handleChange}
                 required
               >
-                <option value="">Xizmatni tanlang</option>
-                <option>Tibbiy Kodlash</option>
-                <option>Audit va Konsalting</option>
-                <option>To'liq RCM Boshqaruvi</option>
+                <option value="">{t('schedule.form.select')}</option>
+                <option>{t('schedule.form.options.coding')}</option>
+                <option>{t('schedule.form.options.audit')}</option>
+                <option>{t('schedule.form.options.rcm')}</option>
               </select>
             </div>
 
@@ -115,7 +116,7 @@ export default function ScheduleAppointment() {
               type="submit"
               className="w-full bg-slate-900 text-white py-5 rounded-2xl font-bold text-lg hover:bg-sky-600 shadow-xl shadow-slate-200 transition-all active:scale-[0.98] flex items-center justify-center gap-3"
             >
-              Uchrashuvni Tasdiqlash <CheckCircle size={22} />
+              {t('schedule.form.submit')} <CheckCircle size={22} />
             </button>
           </form>
         </div>
